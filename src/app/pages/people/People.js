@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import SingleUser from './SingleUser';
+import Search from './Search';
 
 class People extends Component {
     constructor(props) {
@@ -10,7 +11,11 @@ class People extends Component {
     render() {
         return (
             <React.Fragment>
-                {/* <Search/> */}
+                <Search/>
+                <SingleUser/>
+                <SingleUser/>
+                <SingleUser/>
+                <SingleUser/>
                 <SingleUser/>
             </React.Fragment>
         )

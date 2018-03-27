@@ -1,0 +1,27 @@
+.UpdateProfile {
+    width: 800px;
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+    bottom: 300px;
+    background-color: skyblue;
+    height: 500px;
+}
+
+.UpdateProfile-z-1 {
+    z-index: -1
+}
+
+.UpdateProfile-img {
+    height: 100px;
+    display: inline;
+    margin-top: 10px;
+}
+
+.UpdateProfile-button {
+    float: left;
+    width: 100px;
+}
+.UpdateProfile-two-buttons {
+    float: right;
+}

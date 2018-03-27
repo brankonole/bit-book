@@ -5,7 +5,7 @@ import '../App.css';
 import Feed from './pages/feed/Feed';
 import Header from './partials/Header';
 import Footer from './partials/Footer';
-
+import Profile from "./pages/profile/Profile"
 
 class App extends Component {
   render() {
@@ -14,7 +14,8 @@ class App extends Component {
         {/* <Header/> */}
         <main>
           <Switch>
-            <Route to='/feed' component={Feed}/>
+            {/* <Route to='/feed' component={Feed}/> */}
+            <Route to='/profile' component={Profile}/>
           </Switch>
         </main>
         {/* <Footer/> */}

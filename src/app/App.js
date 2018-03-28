@@ -15,7 +15,7 @@ class App extends Component {
         <main>
           <Switch>
             {/* <Route to='/feed' component={Feed}/> */}
-            <Route to='/profile' component={Profile}/>
+            <Route path='/profile' component={Profile}/>
           </Switch>
         </main>
         {/* <Footer/> */}

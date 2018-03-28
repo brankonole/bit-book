@@ -1,11 +1,12 @@
 .UpdateProfile {
-    width: 800px;
-    margin: 0 auto;
+    min-width: 500px;
+    margin: 0 auto!;
     z-index: 2;
     position: relative;
     bottom: 300px;
-    background-color: skyblue;
     height: 500px;
+    background-color: skyblue;
+    padding: 45px;
 }
 
 .UpdateProfile-z-1 {
@@ -20,8 +21,27 @@
 
 .UpdateProfile-button {
     float: left;
-    width: 100px;
+    padding: 0 auto!;
+    margin: 10px;
 }
 .UpdateProfile-two-buttons {
     float: right;
 }
+
+h4 {
+    margin: 20px 0;
+    text-align: left
+}
+
+::-webkit-input-placeholder {
+    color: Black;
+  }
+  ::-moz-placeholder { 
+    color: Black;
+  }
+  :-ms-input-placeholder { 
+    color: Black;
+  }
+  :-moz-placeholder {
+    color: Black;
+  }

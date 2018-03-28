@@ -1,0 +1,48 @@
+.Profile {
+    text-align: center; 
+    margin-top: 100px;
+
+}
+
+#Profile-img {
+    height: 250px;
+    width: 250px;
+    border-radius: 100%;
+}
+
+.container {
+    text-align: center;
+} 
+
+.Profile-Two-counters {
+    margin-top: 30px;
+   display: -webkit-inline-flex;
+}
+
+.Profile-c {
+    height: 100%;
+    width: 35px;
+    background-color: blue;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.Profile-one {
+    display: flex;
+    align-items: center;
+    float: left;
+    margin-right: 65px;
+    background-color: rgb(235, 228, 228);
+    border: solid rgb(235, 228, 228) 1px;
+    border-radius: 20px;
+    height: 35px;
+}
+.Profile-one p { margin: 0 10px; }
+
+a{
+    text-decoration: underline;
+}
+

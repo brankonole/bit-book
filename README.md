@@ -137,12 +137,50 @@ my-app/
     index.html
     favicon.ico
   src/
+      entities/
+      pages/
+        feed/
+          Button.js
+          DropDown.js
+          Feed.js
+          FeedItem.js
+          NewImage.js
+          NewPost.js
+          NewVideo.js
+        login_register/
+          Login.js
+          LoginRegister.js
+          Register.js
+        people/
+          People.js
+          Search.js
+          SingleUser.js
+        profile/
+          EditProfile.js
+          Profile.js
+          UpdateProfile.js
+        single_feed/
+          AddComment.js
+          Comment.js
+          CommentList.js
+          Image.js
+          Post.js
+          SingleFeed.js
+          Video.js
+      partials/
+        Footer.js
+        Header.js
+      services/
+        DataServices.js
+      shared/
+        utils/
     App.css
     App.js
     App.test.js
     index.css
     index.js
     logo.svg
+    registerServiceWorker.js
 ```
 
 For the project to build, **these files must exist with exact filenames**:

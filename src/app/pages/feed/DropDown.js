@@ -10,12 +10,12 @@ class DropDown extends Component {
     render() {
         return (
             <React.Fragment className="DropDownMain-css">
-                <Link to={`/feed`} className='dropdown-button btn DropDown-css' data-activates='dropdown1'>Drop Me!</Link>
+                <Link to={`/feed`} className='dropdown-button btn DropDown-css' data-activates='dropdown1'>All Posts</Link>
                 <ul id='dropdown1' className='dropdown-content'>
-                <li><Link to={`/feed`}>Option</Link></li>
-                <li><Link to={`/feed`}>Videos</Link></li>
-                <li><Link to={`/feed`}>images</Link></li>
-                <li><Link to={`/feed`}>Text</Link></li>
+                    <li><Link to={`/feed`}>Option</Link></li>
+                    <li><Link to={`/feed`}>Videos</Link></li>
+                    <li><Link to={`/feed`}>images</Link></li>
+                    <li><Link to={`/feed`}>Text</Link></li>
                 </ul>
             </React.Fragment>
         )

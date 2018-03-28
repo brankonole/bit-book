@@ -12,9 +12,9 @@ class Header extends Component {
                     <div className="nav-wrapper container">
                         <Link to="/" className="brand-logo">BitBook</Link>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            <li><Link to="/feed">Feed</Link></li>
                             <li><Link to="/people">People</Link></li>
                             <li><Link to="/profile">Profile</Link></li>
-                            <li><Link to="/feed">Feed</Link></li>
                         </ul>
                     </div>
                 </nav>

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import NewPost from './NewPost';
 import DropDown from './DropDown';
 import FeedItem from './FeedItem';
+import { dataService } from '../../../services/DateService';
 
 import './Feed.css';
 
@@ -11,6 +12,14 @@ class Feed extends Component {
         super(props)
 
     }
+
+    componentDidMount() {
+        dataService.fetchPosts()
+            .then(res =>{
+                console.log(res);
+            })
+    }
+ 
     render() {
         return (
             <React.Fragment>

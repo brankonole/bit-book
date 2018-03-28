@@ -1,11 +1,9 @@
-class TextPost {
-    constructor(eachText) {
-        this.text = eachText.text;
-        this.id = eachText.id;
-        this.dateCreated = eachText.dateCreated;
-        this.userId = userId.body;
-        this.type = type.body;
-        this.commentsNum = commentsNum.body;
+import Post from './Post';
+
+class TextPost extends Post {
+    constructor(props) {
+        super(props);
+        this.text = props.text;
     }
 }
 

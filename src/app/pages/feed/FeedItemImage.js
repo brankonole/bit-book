@@ -12,8 +12,8 @@ const FeedItemImage = props => {
                 <div className="card-content ">
                     <img src={props.src} alt="" srcSet="" className="FeedItemImage-img"/>
                     <div className="FeedItem-inline-img">
-                        <p className="left">Image  post</p> 
-                        <p className="right"> {props.commentsNum} Comment  </p>
+                        <p >Image  post</p> 
+                        <p> {props.commentsNum} Comment    </p>
                         
                     </div>
                 </div>

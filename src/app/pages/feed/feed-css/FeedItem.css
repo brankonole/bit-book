@@ -5,7 +5,14 @@
 .FeedItem-inline:last-child {
     float: right;
 } */
-
+/* 
 .card-content p {
+    width: 100%;
+} */
+.FeedItem-inline {
+    display: flex !important; 
+    justify-content: space-between !important;
+}
+.card-content {
     width: 100%;
 }

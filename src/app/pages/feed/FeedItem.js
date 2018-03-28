@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import FeedItemVideo from "./FeedItemVideo";
 import FeedItemImage from "./FeedItemImage";
 import FeedItemText from "./FeedItemText";
+import "./feed-css/FeedItem.css"
 
 
 // import 'FeedItem.css'

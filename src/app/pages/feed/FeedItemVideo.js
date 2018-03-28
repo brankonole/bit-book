@@ -15,10 +15,10 @@ import "./feed-css/FeedItemVideo.css"
                 <div className="col s12 m12">
                     <div className="card horizontal hoverable">
                         <div className="card-content left-align">
-                            <iframe  width="530" height="315" src={src}frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                            <iframe  width="100%" height="315" src={src}frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                             <div className="FeedItem-inline">
-                                <p className="FeedItem-inline-1">Video post </p>
-                                <p className="right"> {props.commentsNum} Comment</p>
+                                <p >Video post </p>
+                                <p >  {props.commentsNum} Comment</p>
                             </div>
                         </div>
                     </div>

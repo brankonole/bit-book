@@ -11,8 +11,8 @@ const FeedItemText = props => {
                 <div className="card-content">
                     <p>{props.text}</p> 
                     <div className="FeedItem-inline">
-                        <p className="left">Text post</p>
-                        <p className="right"> {props.commentsNum}  Comment</p>
+                        <p >Text post</p>
+                        <p > {props.commentsNum}   Comment</p>
                     </div>
                  </div>
             </div>

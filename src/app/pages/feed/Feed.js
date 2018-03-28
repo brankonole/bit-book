@@ -11,9 +11,11 @@ class Feed extends Component {
     render() {
     return (
         <React.Fragment>
-        <NewPost/>
-        <DropDown/>
-        <div>Fantastic 4</div>
+            <div className="container">
+            <NewPost/>
+            <DropDown/>
+            <div>Fantastic 4</div>
+            </div>
         </React.Fragment>
     )
 }

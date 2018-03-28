@@ -10,17 +10,24 @@ import './Feed.css';
 class Feed extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            posts : []
+        }
 
     }
 
     componentDidMount() {
         dataService.fetchPosts()
             .then(res =>{
-                console.log(res);
+                
+                this.setState({
+                    posts : res
+                })
             })
     }
- 
+    
     render() {
+        console.log(this.state.posts);
         return (
             <React.Fragment>
                 <div className="container">
@@ -30,7 +37,7 @@ class Feed extends Component {
                             <NewPost />
                             <DropDown />
                         </aside>
-                            <FeedItem/>
+                            <FeedItem posts={this.state.posts}/>
                     </div>
                     <div>Fantastic 4</div>
                 </div>

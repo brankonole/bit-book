@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import NewPost from './NewPost';
+import Button from './Button';
 import DropDown from './DropDown';
 import FeedItem from './FeedItem';
 import { dataService } from '../../../services/DateService';
@@ -27,7 +27,7 @@ class Feed extends Component {
                     <div className='row'>
                         <div className='main col s7 offset-s2'></div>
                         <aside className='Feed-aside col s3'>
-                            <NewPost />
+                            <Button />
                             <DropDown />
                         </aside>
                             <FeedItem/>

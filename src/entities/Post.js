@@ -2,9 +2,9 @@ class Post {
     constructor(post) {
         this.id = post.id;
         this.dateCreated = post.dateCreated;
-        this.userId = post.body;
+        this.userId = post.userId;
         this.type = post.type;
-        this.commentsNum = post.body;
+        this.commentsNum = post.commentsNum;
     }
 }
 

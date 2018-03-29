@@ -18,6 +18,7 @@ class App extends Component {
             <Route path='/profile' component={Profile}/>
             <Route exact path='/people' component={People}/>
             <Route exact path='/feed' component={Feed}/>
+            <Route exact path='/' component={Feed}/>
           </Switch>
         </main>
         <Footer/>

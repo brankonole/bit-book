@@ -16,6 +16,7 @@ class DataService {
         })
             .then(response => {
                 let myJSON = response.json();
+                
                 return myJSON;
             })
             .then(response => {

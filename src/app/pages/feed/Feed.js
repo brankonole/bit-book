@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
 
 import Button from './Button';
 import DropDown from './DropDown';

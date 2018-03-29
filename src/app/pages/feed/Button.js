@@ -52,11 +52,17 @@ class NewPost extends Component {
     }
 
     closeModal() {
-        this.setState({ modalIsOpen: false });
+        this.setState({
+            modalIsOpen: false,
+            inputTextValue: '',
+            inputVideoValue: '',
+            inputImageValue: ''
+        });
     }
 
     // render posts modals
     renderVideoModal() {
+        console.log("videoooo")
         return (<div>
             <div className='Button-header'>
                 <h4 ref={subtitle => this.subtitle = subtitle} className='Button-title'>New video post</h4>
@@ -66,7 +72,7 @@ class NewPost extends Component {
             <div>
                 <input value={this.state.inputVideoValue} onChange={this.updateInputVideoValue} autoFocus/>
                 {this.state.isValidate ? "" : <p className='Button-text-errormsg'>Invalid input!</p>}
-                <button className='waves-effect waves-light btn Button-post-btn' onClick={this.addVideoPost} onClick={this.closeModal}>POST</button>
+                <button className='waves-effect waves-light btn Button-post-btn' onClick={this.addVideoPost}>POST</button>
             </div>
         </div>)
     }
@@ -78,10 +84,11 @@ class NewPost extends Component {
                 <a onClick={this.closeModal} className='Button-close-btn'><i class="material-icons small dp48">close</i></a>
             </div>
             <div>Add image file</div>
-            <form>
+            <div>
                 <input value={this.state.inputImageValue} onChange={this.updateInputImageValue} autoFocus/>
-                <button className='waves-effect waves-light btn Button-post-btn' onClick={this.addImagePost} onClick={this.closeModal}>POST</button>
-            </form>
+                {this.state.isValidate ? "" : <p className='Button-text-errormsg'>Invalid input!</p>}
+                <button className='waves-effect waves-light btn Button-post-btn' onClick={this.addImagePost}>POST</button>
+            </div>
         </div>)
     }
 
@@ -93,11 +100,11 @@ class NewPost extends Component {
                 <a onClick={this.closeModal} className='Button-close-btn'><i class="material-icons small dp48">close</i></a>
             </div>
             <div>Add text</div>
-            <form>
+            <div>
                 <input value={this.state.inputTextValue} onChange={this.updateInputTextValue} autoFocus/>
                 {this.state.isValidate ? "" : <p className='Button-text-errormsg'>Invalid input!</p>}
                 <button className='waves-effect waves-light btn Button-post-btn' onClick={this.addTextPost}>POST</button>
-            </form>
+            </div>
         </div>)
     }
 
@@ -147,14 +154,15 @@ class NewPost extends Component {
         }
     }
 
-    addVideoPost = () => {
+    addVideoPost = (event) => {
+        event.preventDefault();
+
         let data = {
             videoUrl: this.state.inputVideoValue
         }
         console.log(this.state.inputVideoValue);
         
         if (this.state.inputVideoValue.match(/^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/) == null) {
-            console.log("ne valja")
             this.setState({
                 isValidate: false
             })
@@ -164,23 +172,34 @@ class NewPost extends Component {
         dataService.uploadNewVideoPost(data)
             .then(res => {
                 console.log(res);
+                this.closeModal();
+            });
+            this.setState({
+                inputVideoValue: ''
             })
     }
 
-    addImagePost = () => {
+    addImagePost = (event) => {
+        event.preventDefault();
 
         let data = {
             imageUrl: this.state.inputImageValue
         }
 
-        if (data.match(/^(http|https):\/\/.*\.(jpg|jpeg|gif|png)$/) == null) {
-            
+        if (this.state.inputImageValue.match(/^(http|https):\/\/.*\.(jpg|jpeg|gif|png)$/) == null) {
+            this.setState({
+                isValidate: false
+            })
             return
         }
 
         dataService.uploadNewImagePost(data)
             .then(res => {
                 console.log(res);
+                this.closeModal();
+            });
+            this.setState({
+                inputImageValue: ''
             })
     }
 
@@ -210,7 +229,6 @@ class NewPost extends Component {
                             contentLabel="Example Modal"
                         >
                             {this.renderModalView()}
-
                         </Modal>
                     </ul>
                 </div>

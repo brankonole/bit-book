@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import NewPost from './NewPost';
 import DropDown from './DropDown';
@@ -28,9 +29,11 @@ class Feed extends Component {
     
     render() {
         console.log(this.state.posts);
+
         return (
-            <React.Fragment>
-                <div className="container">
+
+        
+     <div className="container">
                     <div className='row'>
                         <div className='main col s7 offset-s2'></div>
                         <aside className='Feed-aside col s3'>
@@ -41,7 +44,8 @@ class Feed extends Component {
                     </div>
                     <div>Fantastic 4</div>
                 </div>
-            </React.Fragment>
+
+         
         )
     }
 }

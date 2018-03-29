@@ -12,7 +12,7 @@ const FeedItemText = props => {
                     <p>{props.text}</p> 
                     <div className="FeedItem-inline">
                         <p >Text post</p>
-                        <p > {props.commentsNum}   Comment</p>
+                        <p > {props.commentsNum}  Comment</p>
                     </div>
                  </div>
             </div>

@@ -11,7 +11,7 @@ const FeedItemImage = props => {
             <div className="card horizontal hoverable">
                 <div className="card-content ">
                     <img src={props.src} alt="" srcSet="" className="FeedItemImage-img"/>
-                    <div className="FeedItem-inline-img">
+                    <div className="FeedItem-inline-img FeedItem-inline">
                         <p >Image  post</p> 
                         <p> {props.commentsNum} Comment    </p>
                         

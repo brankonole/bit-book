@@ -1,0 +1,27 @@
+.Button-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.Button-title {
+    margin: 10px 0;
+    color: #000;
+}
+.Button-close-btn {
+    display: flex;
+    text-decoration: none;
+    color: #928f8f;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.Button-close-btn:hover {
+    color: #cc2121;;
+}
+.Button-post-btn {
+    display: block;
+    margin-left: auto;
+}
+.Button-text-errormsg {
+    color: red;
+}

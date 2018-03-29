@@ -28,7 +28,6 @@ class Feed extends Component {
     }
     
     render() {
-        console.log(this.state.posts);
 
         return (
 

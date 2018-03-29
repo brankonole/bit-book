@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const FeedItemText = props => {
- 
+const Text= props => {
+     
     return (
         <div className="row container center">
         <div className="col s12 m12">
@@ -17,6 +17,6 @@ const FeedItemText = props => {
         </div>
     </div>
     )
-}
+};
 
-export default FeedItemText;
+export default Text;

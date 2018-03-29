@@ -1,0 +1,22 @@
+.Comment-image {
+    border-radius: 100%;
+    width: 120px;
+    height: 100px;
+}
+
+.card {
+    padding: 20px;
+    border: solid lightgray 2px;
+    border-radius: 12px;
+}
+.Comment-paragraph {
+    text-align: left;
+}
+
+.Comment-div {
+    margin: 3%;
+}
+.Comment-name {
+    font-weight: bold;
+    -ms-flex-align: left;
+}

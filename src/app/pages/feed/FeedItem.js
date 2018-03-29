@@ -1,51 +1,41 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {Link} from "react-router-dom";
+
+import FeedItemVideo from "./FeedItemVideo";
+import FeedItemImage from "./FeedItemImage";
+import FeedItemText from "./FeedItemText";
+import "./feed-css/FeedItem.css"
+
 
 // import 'FeedItem.css'
 
-const FeedItem = () => {
+const FeedItem = (props) => {
+
+ 
     return (
-        <React.Fragment>
-            <div className="row container center">
-                <div className="col s12 m12">
-                    <div className="card horizontal hoverable">
-                        <div className="card-content left-align">
-                            <iframe width="530" height="315" src="https://www.youtube.com/embed/AZ1pHmWhIuY" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                            <div className="FeedItem-inline">
-                                <p>Video post</p>
-                                <p className="right">Comment</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="row container center">
-                <div className="col s12 m12">
-                    <div className="card horizontal hoverable">
-                        <div className="card-content left-align">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus ab, earum esse voluptatem optio atque nihil reiciendis, sapiente corporis totam possimus consectetur, minus necessitatibus amet odit dolorum consequatur doloribus ex.</p>
-                            <div className="FeedItem-inline">
-                                <p>Video post</p>
-                                <p className="right">Comment</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="row container center">
-                <div className="col s12 m12">
-                    <div className="card horizontal hoverable">
-                        <div className="card-content left-align">
-                            <img src="" alt="" srcSet="" />
-                            <div className="FeedItem-inline">
-                                <p>Video post</p>
-                                <p className="right">Comment</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </React.Fragment>
+       (props.posts.length == 0)? <h1>...Loading</h1> : 
+
+       
+
+
+        <Link to="singleFeed">
+            {props.posts.map(element => {
+                
+                if (element.type === "video") {
+                    return  <FeedItemVideo src={element.videoUrl} commentsNum={element.commentsNum}/>
+                }  else if (element.type === "image") {
+                    return  <FeedItemImage src={element.imageUrl} commentsNum={element.commentsNum} />
+                }  else {
+                    return  <FeedItemText text={element.text} commentsNum={element.commentsNum}/>
+                } 
+            })}
+           
+           
+           
+           
+        </Link>
     )
 }
+
 
 export default FeedItem;

@@ -1,4 +1,4 @@
-.UpdateProfile {
+/* .UpdateProfile {
     min-width: 500px;
     margin: 0 auto!;
     z-index: 2;
@@ -44,4 +44,7 @@ h4 {
   }
   :-moz-placeholder {
     color: Black;
+  } */
+  .UpdateProdile-input-file {
+      width: 0;
   }

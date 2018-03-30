@@ -5,8 +5,9 @@ import MyProfile from '../entities/MyProfile';
 
 const url = 'http://bitbookapi.azurewebsites.net/api/';
 
-//gets
 class DataService {
+
+    //gets
     fetchPosts() {
         return fetch(`${url}/Posts`, {
             headers: {
@@ -104,6 +105,23 @@ class DataService {
             })
     }
 
+    // puts
+    fetchUpdateMyProfile(data) {
+        return fetch(`${url}/profiles`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Accept': "aplication/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            return res.json()           
+        })
+    }
 }
+
 
 export const dataService = new DataService;

@@ -28,6 +28,10 @@ class Profile extends Component {
         this.state = {
             myProfileData: {},
             isOpen: false
+            // updatedMyProfileData: {}
+            // fullNameInputValue: '',
+            // pictureInputValue: '',
+            // descriptionInputValue: '',
         }
     }
 
@@ -40,6 +44,56 @@ class Profile extends Component {
                 })
             }) 
     }
+    ///changing state
+        // changingState = () => {
+        //     this.setState({
+        //         scrum: !this.state.scrum
+        //     })
+        // }
+
+
+    // //update input values in my profile
+    // updateFullNameInputValue = e => {
+    //     this.setState({
+    //         fullNameInputValue: e.target.value
+    //     });
+    // }
+    
+    // updatePictureInputValue = e => {
+    //     this.setState({
+    //         pictureInputValue: e.target.value
+    //     });
+    // }
+
+    // updateDescriptionInputValue = e => {
+    //     this.setState({
+    //         descriptionInputValue: e.target.value
+    //     });
+    // }
+
+    // updateMyProfile() {
+    //     let data = {
+    //         name: this.state.fullNameInputValue,
+    //         avatarUrl: this.state.pictureInputValue,
+    //         about: this.state.descriptionInputValue
+    //     }
+
+    //     // let data = {
+    //     //     name: name,
+    //     //     avatarUrl: avatar,
+    //     //     about: about
+    //     // }
+
+    //     console.log(this.state.fullNameInputValue);
+        
+    //     dataService.fetchUpdateMyProfile(data)
+    //         .then(res => {
+    //             console.log(res);
+    //             this.setState({
+    //                 updatedMyProfileData: res
+    //             })
+    //         })
+    // }
 
     componentDidMount() {
         this.myProfile();
@@ -58,7 +112,8 @@ class Profile extends Component {
     }
 
     render() {
-        if (this.state.myProfileData.length === 0) {
+        console.log(this.state.scrum);
+        if (this.state.myProfileData.length === 0 ) {
             return <h2>Loading....</h2>
         } else {
             return (
@@ -70,7 +125,7 @@ class Profile extends Component {
                     <p>{this.state.myProfileData.about}</p>
 
                     <Modal style={customStyles} isOpen={this.state.isOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
-                        <UpdateProfile closeEditWindow={this.closeModal} /*updateWindow={}*//>
+                        <UpdateProfile /*changeFullName={this.updateFullNameInputValue} changePicture={this.updatePictureInputValue} changeDesc={this.updateDescriptionInputValue}*/ closeEditWindow={this.closeModal} updateWindow={this.updateMyProfile}/>
                     </Modal>
     
                     <div className="Profile-Two-counters center">

@@ -10,20 +10,21 @@ import "./feed-css/FeedItem.css"
 // import 'FeedItem.css'
 
 const FeedItem = (props) => {
+    
     return (
        (props.posts.length == 0)? <h1>...Loading</h1> : 
 
             props.posts.map(element => {
                 
                 if (element.type === "video") {
-                    return (  <Link to={`/feed/video/${element.id}`}>
+                    return (  <Link to={`/feed/video/${element.id}/${element.userId}`}>
                     <FeedItemVideo src={element.videoUrl} commentsNum={element.commentsNum}/>
                     </Link>
                 )
                 }  else if (element.type === "image") {
-                    return  (<Link to={`/feed/image/${element.id}`}><FeedItemImage src={element.imageUrl} commentsNum={element.commentsNum} /> </Link>)
+                    return  (<Link to={`/feed/image/${element.id}/${element.userId}`}><FeedItemImage src={element.imageUrl} commentsNum={element.commentsNum} /> </Link>)
                 }  else {
-                    return  (<Link to={`/feed/text/${element.id}`}><FeedItemText text={element.text} commentsNum={element.commentsNum}/> </Link>)
+                    return  (<Link to={`/feed/text/${element.id}/${element.userId}`}><FeedItemText text={element.text} commentsNum={element.commentsNum}/> </Link>)
                 } 
             })
 

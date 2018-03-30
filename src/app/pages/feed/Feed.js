@@ -12,19 +12,37 @@ class Feed extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            posts : []
+            posts: [],
+            filteredPosts: []
         }
 
     }
 
     componentDidMount() {
         dataService.fetchPosts()
-            .then(res =>{
-                
-                this.setState({
-                    posts : res
-                })
+        .then(res =>{
+            this.setState({
+                posts : res,
+                filteredPosts: res
             })
+        })
+    }
+    //// filtering posts by type
+    filter = (type) => {
+        if (this.state.posts.length !== 0 ) {
+        const filter = this.state.posts.filter(element => element.type == type) 
+        this.setState({
+            filteredPosts: filter
+        })
+    }
+}
+
+    /// antifiltering posts
+
+    antifilter= () => {
+        this.setState({
+            filteredPosts: this.state.posts
+        })
     }
     
     render() {
@@ -37,9 +55,9 @@ class Feed extends Component {
                         <div className='main col s7 offset-s2'></div>
                         <aside className='Feed-aside col s3'>
                             <NewPost />
-                            <DropDown />
+                            <DropDown filter={this.filter} antifilter={this.antifilter}/>
                         </aside>
-                            <FeedItem posts={this.state.posts}/>
+                            <FeedItem posts={this.state.filteredPosts}/>
                     </div>
                     <div>Fantastic 4</div>
                 </div>

@@ -60,12 +60,7 @@ class DataService {
                 let myJson = response.json()
                 return myJson
             })
-            
-    
-
 }
-
-
     //fetch comments
 
     fetchComments(id) {
@@ -80,12 +75,46 @@ class DataService {
             .then(response => {
                 let res = response.json();                
                 return res;
-            })
-            
-            
-        
+            })   
     }
-      
+
+    //fetching single profile
+
+    fetchingUser(id){
+        return fetch(`${url}/users/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Accept': "aplication/json"}
+        }
+    )
+    .then(response => {
+        let a = response.json();   
+        console.log(a);
+                     
+        return a;
+    })   
+}
+
+// sending comments on server
+
+sendComment(data, id) {
+    return fetch(`${url}/Comments/TextPosts`, {
+        method: "POST",
+        header: { 
+            'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+        },
+       data: {
+           body: data,
+           postId: id,
+       }
+    })
+    
+}
+
 }
 
 export const dataService = new DataService;

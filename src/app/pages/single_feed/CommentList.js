@@ -1,17 +1,14 @@
 import React from "react";
 
 import Comment from "./Comment"
-
-
+import NoComments from "./NoComments"
 
 const CommentList = props => {
-    console.log(props.comments);
     
     return (
-        props.comments.length === 0? <p>There are no comments yet!</p> : props.comments.map(element => {
-            console.log(element.props)
+        props.comments.length === 0? <NoComments/>
+     : props.comments.map(element => {
             return (
-                
                 <Comment content={element}/>
             )
         })

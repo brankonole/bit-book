@@ -24,6 +24,7 @@ class SingleFeed extends Component {
     type = this.props.match.params.type;
 
     componentDidMount() {
+        console.log(this.props);
         dataService.fetchSinglePost(this.type, this.id)
             .then(response => {
                 response = response;  
@@ -46,21 +47,20 @@ class SingleFeed extends Component {
             return( <React.Fragment>
                 <Video videoUrl={this.state.singlePost.videoUrl} />}
             <AddComment />
-                <CommentList comments={this.state.comments}/>
+                <CommentList userId={this.props.match.params.userId} comments={this.state.comments}/>
             </React.Fragment>)
         }
         else if (this.type === "image") {
             return (  <React.Fragment>
                 <Image imageUrl={this.state.singlePost.imageUrl} /> 
                 <AddComment />
-                 <CommentList comments={this.state.comments}/>
+                 <CommentList userId={this.props.match.params.userId} comments={this.state.comments}/>
             </React.Fragment>)
         } else {
             return ( <React.Fragment>
                  <Text text={this.state.singlePost.text} />
                 <AddComment />
-                 <CommentList comments={this.state.comments}/>
-                 <Comment/>
+                 <CommentList userId={this.props.match.params.userId} comments={this.state.comments}/>
             </React.Fragment> )
         }
     }

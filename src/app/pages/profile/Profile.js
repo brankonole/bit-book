@@ -1,27 +1,86 @@
-import React, { Component } from "react"
-import "./css/Profile.css"
-
-import EditProfile from "./EditProfile"
-import UpdateProfile from "./UpdateProfile"
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-const Profile = props => {
-    return (
+// import EditProfile from "./EditProfile";
+import { dataService } from '../../../services/DataService';
+import UpdateProfile from "./UpdateProfile";
+import Modal from 'react-modal';
 
-        <div class="col s2 container Profile">
-            <img id="Profile-img" src="http://www.babies-cute.com/wp-content/uploads/2012/05/upload-cute-baby-picture-810x425.jpg" alt="" class="circle responsive-img" />
-            <h3>Name Surname</h3>
-            <Link to={`/profile`}>Edit profile</Link>
-            {/* <EditProfile /> */}
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-            <UpdateProfile />
+import "./css/Profile.css";
 
-            <div className="Profile-Two-counters center">
-                <div className="Profile-one left"><div className='Profile-c'>C</div><p>Counter posts</p></div>
-                <div className="Profile-one"><div className='Profile-c'>C</div><p>Counter Comments</p></div>
-            </div>
-        </div>
-    )
+const customStyles = {
+    content: {
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: '50%'
+    }
+  };
+
+class Profile extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            myProfileData: {},
+            isOpen: false
+        }
+    }
+
+    myProfile() {
+        dataService.fetchMyProfile()
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    myProfileData: res
+                })
+            }) 
+    }
+
+    componentDidMount() {
+        this.myProfile();
+    }
+
+    openModal = () => {
+        this.setState({
+            isOpen: true
+        })
+    }
+
+    closeModal = () => {
+        this.setState({
+            isOpen: false
+        })
+    }
+
+    render() {
+        if (this.state.myProfileData.length === 0) {
+            return <h2>Loading....</h2>
+        } else {
+            return (
+                <div className="col s2 container Profile">
+                    <img id="Profile-img" src={this.state.myProfileData.avatarUrl} alt="" className="circle responsive-img" />
+                    <h3>{this.state.myProfileData.name}</h3>
+                    <Link to={`/profile`} onClick={this.openModal}>Edit profile</Link>
+                    {/* <EditProfile /> */}
+                    <p>{this.state.myProfileData.about}</p>
+
+                    <Modal style={customStyles} isOpen={this.state.isOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
+                        <UpdateProfile closeEditWindow={this.closeModal} /*updateWindow={}*//>
+                    </Modal>
+    
+                    <div className="Profile-Two-counters center">
+                        <div className="Profile-one left"><div className='Profile-c'>C</div><p>{this.state.myProfileData.postsCount}</p></div>
+                        <div className="Profile-one"><div className='Profile-c'>C</div><p>{this.state.myProfileData.commentsCount}</p></div>
+                    </div>
+                </div>
+            )
+        }
+    }
 }
 
 export default Profile;

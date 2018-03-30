@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Button from './Button';
 import DropDown from './DropDown';
 import FeedItem from './FeedItem';
-import { dataService } from '../../../services/DateService';
+import { dataService } from '../../../services/DataService';
 
 import './Feed.css';
 
@@ -17,13 +17,16 @@ class Feed extends Component {
     }
 
     componentDidMount() {
+        this.getPosts();
+    }
+
+    getPosts = () => {
         dataService.fetchPosts()
-            .then(res =>{
-                
-                this.setState({
-                    posts : res
-                })
+        .then(res =>{
+            this.setState({
+                posts : res
             })
+        })
     }
     
     render() {
@@ -36,7 +39,7 @@ class Feed extends Component {
                     <div className='row'>
                         <div className='main col s7 offset-s2'></div>
                         <aside className='Feed-aside col s3'>
-                            <Button />
+                            <Button refreshData={this.getPosts} />
                             <DropDown />
                         </aside>
                             <FeedItem posts={this.state.posts}/>

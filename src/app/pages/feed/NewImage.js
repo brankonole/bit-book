@@ -2,7 +2,7 @@
 // import { Link } from "react-router-dom";
 // import Modal from 'react-modal';
 
-// import { dataService } from '../../../services/DateService';
+// import { dataService } from '../../../services/DataService';
 
 // import './feed-css/NewPost.css';
 // import './feed-css/Button.css';

@@ -1,9 +1,11 @@
 import TextPost from '../entities/TextPost';
 import ImagePost from '../entities/ImagePost';
 import VideoPost from '../entities/VideoPost';
+import MyProfile from '../entities/MyProfile';
 
 const url = 'http://bitbookapi.azurewebsites.net/api/';
 
+//gets
 class DataService {
     fetchPosts() {
         return fetch(`${url}/Posts`, {
@@ -16,7 +18,7 @@ class DataService {
         })
             .then(response => {
                 let myJSON = response.json();
-                
+
                 return myJSON;
             })
             .then(response => {
@@ -34,6 +36,26 @@ class DataService {
             })
     }
 
+    fetchMyProfile() {
+        return fetch(`${url}/profile`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+            }
+        })
+            .then(response => {
+                let myJSON = response.json();
+                
+                // console.log(myJSON);
+                return myJSON;
+            })
+            .then(response => {
+                return new MyProfile(response)
+            })
+    }
+
+    //posts
     uploadNewTextPost(data) {
         return fetch(`${url}/TextPosts`, {
             method: 'POST',
@@ -45,9 +67,9 @@ class DataService {
             },
             body: JSON.stringify(data)
         })
-        .then(res => {
-            return res.json()
-        })
+            .then(res => {
+                return res.json()
+            })
     }
 
     uploadNewVideoPost(data) {
@@ -61,9 +83,9 @@ class DataService {
             },
             body: JSON.stringify(data)
         })
-        .then(res => {
-            return res.json()
-        })
+            .then(res => {
+                return res.json()
+            })
     }
 
     uploadNewImagePost(data) {
@@ -77,9 +99,9 @@ class DataService {
             },
             body: JSON.stringify(data)
         })
-        .then(res => {
-            return res.json()
-        })
+            .then(res => {
+                return res.json()
+            })
     }
 
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Modal from 'react-modal';
 
-import { dataService } from '../../../services/DateService';
+import { dataService } from '../../../services/DataService';
 
 import './feed-css/NewPost.css';
 import './feed-css/Button.css';
@@ -97,7 +97,7 @@ class NewPost extends Component {
         return (<div>
             <div className='Button-header'>
                 <h4 ref={subtitle => this.subtitle = subtitle} className='Button-title'>New text post</h4>
-                <a onClick={this.closeModal} className='Button-close-btn'><i class="material-icons small dp48">close</i></a>
+                <a onClick={this.closeModal} className='Button-close-btn'><i className="material-icons small dp48">close</i></a>
             </div>
             <div>Add text</div>
             <div>
@@ -146,7 +146,8 @@ class NewPost extends Component {
             this.closeModal();
             dataService.uploadNewTextPost(data)
                 .then(res => {
-                    console.log(res);
+                    // console.log(res);
+                    this.props.refreshData();
                 })
             this.setState({
                 inputTextValue: ''
@@ -173,6 +174,7 @@ class NewPost extends Component {
             .then(res => {
                 console.log(res);
                 this.closeModal();
+                this.props.refreshData();
             });
             this.setState({
                 inputVideoValue: ''
@@ -197,6 +199,7 @@ class NewPost extends Component {
             .then(res => {
                 console.log(res);
                 this.closeModal();
+                this.props.refreshData();
             });
             this.setState({
                 inputImageValue: ''

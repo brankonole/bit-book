@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import "./css/AddComment.css";
-import { dataService } from "../../../services/DateService"
+import { dataService } from "../../../services/DataService"
 
 const numberOfCharacters = 50;
 

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
 
-import NewPost from './NewPost';
+import Button from './Button';
 import DropDown from './DropDown';
 import FeedItem from './FeedItem';
-import { dataService } from '../../../services/DateService';
+import { dataService } from '../../../services/DataService';
 
 import './Feed.css';
 
@@ -19,6 +18,10 @@ class Feed extends Component {
     }
 
     componentDidMount() {
+        this.getPosts();
+    }
+
+    getPosts = () => {
         dataService.fetchPosts()
         .then(res =>{
             this.setState({
@@ -54,8 +57,10 @@ class Feed extends Component {
                     <div className='row'>
                         <div className='main col s7 offset-s2'></div>
                         <aside className='Feed-aside col s3'>
-                            <NewPost />
+                            {/* <NewPost /> */}
                             <DropDown filter={this.filter} antifilter={this.antifilter}/>
+                            <Button refreshData={this.getPosts} />
+
                         </aside>
                             <FeedItem posts={this.state.filteredPosts}/>
                     </div>

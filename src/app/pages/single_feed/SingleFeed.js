@@ -4,7 +4,7 @@ import Video from "./Video";
 import Image from "./Image";
 import Text from "./Text";
 import Loading from "../../shared/Loading"
-import { dataService } from "../../../services/DateService";
+import { dataService } from "../../../services/DataService";
 import AddComment from "./AddComment"
 import CommentList from "./CommentList"
 import Comment from "./Comment";

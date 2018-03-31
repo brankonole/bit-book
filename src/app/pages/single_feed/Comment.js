@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import "./css/Comment.css"
-import { dataService } from "../../../services/DateService"
+import { dataService } from "../../../services/DataService"
 import User from "../../../entities/User"
 
 class Comment extends Component {

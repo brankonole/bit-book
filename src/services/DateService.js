@@ -91,26 +91,24 @@ class DataService {
     )
     .then(response => {
         let a = response.json();   
-        console.log(a);
-                     
-        return a;
+          return a;
     })   
 }
 
 // sending comments on server
 
-sendComment(data, id) {
-    return fetch(`${url}/Comments/TextPosts`, {
+sendComment(postId,  data) {
+    return fetch(`${url}/Comments`, {
         method: "POST",
-        header: { 
+        headers: { 
             'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+            'Key': 'bitbook',
+            'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
         },
-       data: {
-           body: data,
-           postId: id,
-       }
+       body: JSON.stringify({       
+        "body": data,
+        "postId": postId,
+      })
     })
     
 }

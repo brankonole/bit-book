@@ -17,14 +17,14 @@ const FeedItem = (props) => {
             props.posts.map(element => {
                 
                 if (element.type === "video") {
-                    return (  <Link to={`/feed/video/${element.id}/${element.userId}`}>
+                    return (  <Link to={`/feed/video/${element.id}`}>
                     <FeedItemVideo src={element.videoUrl} commentsNum={element.commentsNum}/>
                     </Link>
                 )
                 }  else if (element.type === "image") {
-                    return  (<Link to={`/feed/image/${element.id}/${element.userId}`}><FeedItemImage src={element.imageUrl} commentsNum={element.commentsNum} /> </Link>)
+                    return  (<Link to={`/feed/image/${element.id}`}><FeedItemImage src={element.imageUrl} commentsNum={element.commentsNum} /> </Link>)
                 }  else {
-                    return  (<Link to={`/feed/text/${element.id}/${element.userId}`}><FeedItemText text={element.text} commentsNum={element.commentsNum}/> </Link>)
+                    return  (<Link to={`/feed/text/${element.id}`}><FeedItemText text={element.text} commentsNum={element.commentsNum}/> </Link>)
                 } 
             })
 

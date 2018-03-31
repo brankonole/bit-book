@@ -24,53 +24,64 @@ class SingleFeed extends Component {
     type = this.props.match.params.type;
 
     componentDidMount() {
-        console.log(this.props);
         dataService.fetchSinglePost(this.type, this.id)
             .then(response => {
-                response = response;  
+                response = response;
                 this.setState({
-                    singlePost: response
+                    singlePost: response,
+                    commentInput: null
                 })
             }
             )
+        this.fetchPostComments();
+    }
+
+    fetchPostComments = () => {
         dataService.fetchComments(this.id)
             .then(response => {
                 this.setState({
                     comments: response
                 })
-            }
-            )
+            })
+    }
+
+    // sending commments
+    sendComments = (data) => {
+        return dataService.sendComment(this.id, data)
+            .then(() => this.fetchPostComments())
+
     }
 
     chooseTypeOfPost() {
         if (this.type === "video") {
-            return( <React.Fragment>
+            return (<React.Fragment>
                 <Video videoUrl={this.state.singlePost.videoUrl} />}
-            <AddComment />
-                <CommentList userId={this.props.match.params.userId} comments={this.state.comments}/>
+            <AddComment sendComments={this.sendComments} />
+                <CommentList comments={this.state.comments} />
             </React.Fragment>)
         }
         else if (this.type === "image") {
-            return (  <React.Fragment>
-                <Image imageUrl={this.state.singlePost.imageUrl} /> 
-                <AddComment />
-                 <CommentList userId={this.props.match.params.userId} comments={this.state.comments}/>
+            return (<React.Fragment>
+                <Image imageUrl={this.state.singlePost.imageUrl} />
+                <AddComment sendComments={this.sendComments} />
+                <CommentList comments={this.state.comments} />
             </React.Fragment>)
         } else {
-            return ( <React.Fragment>
-                 <Text text={this.state.singlePost.text} />
-                <AddComment />
-                 <CommentList userId={this.props.match.params.userId} comments={this.state.comments}/>
-            </React.Fragment> )
+            return (<React.Fragment>
+                <Text text={this.state.singlePost.text} />
+                <AddComment sendComments={this.sendComments} />
+                <CommentList comments={this.state.comments} />
+            </React.Fragment>)
         }
     }
 
 
     render() {
+        console.log(this.state.commentInput);
 
         return (
-            (this.state.singlePost === "") ? <Loading /> :    this.chooseTypeOfPost()
-     
+            (this.state.singlePost === "") ? <Loading /> : this.chooseTypeOfPost()
+
         )
     }
 }

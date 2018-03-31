@@ -1,30 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import "./css/AddComment.css";
 import { dataService } from "../../../services/DateService"
 
-const AddComment = props => {
+class AddComment extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            commentInput: ""
+        }
+    }
 
-    console.log(props);
-    const data = 
-        {
-            
-            "dateCreated": "2018-03-30T17:02:38.037Z",
-            "body": "string",
-            "postId": 1285,
-            "authorName": "string",
-            "authorId": 391
-          }
-    
-    
-    return (
-    <div className="container">
-        <div className="AddComment-row row">
-        <label className="col s8 m8 l8 "><input type="text" placeholder="Add your comment" required/></label>
-        <button className="btn blue col s4 m4 l4 " onClick={() => {dataService.sendComment("dsf", 1286)}}type="submit">Send</button>
-        </div>
-    </div>
-  )
+    // function that catches text input from comment 
+
+    commentInput = (e) => {
+        this.setState({
+            commentInput: e.target.value
+        })
+    }
+
+    /// add commments
+
+    sendComments = (e) => {
+        if (this.state.commentInput == "") {
+            return 
+        } else {this.props.sendComments(this.state.commentInput).then(() => this.setState({commentInput: ""}))}
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <div className="AddComment-row row">
+                    <label className="col s8 m8 l8 ">
+                        <input type="text" value={this.state.commentInput} onChange={this.commentInput} placeholder="Add your comment" required />
+                    </label>
+                    <button className="btn blue col s4 m4 l4 " onClick={this.sendComments} type="submit">Send</button>
+                </div>
+            </div>
+        )
+    }
 }
+
 
 export default AddComment;

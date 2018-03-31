@@ -28,73 +28,18 @@ class Profile extends Component {
         this.state = {
             myProfileData: {},
             isOpen: false
-            // updatedMyProfileData: {}
-            // fullNameInputValue: '',
-            // pictureInputValue: '',
-            // descriptionInputValue: '',
         }
     }
 
-    myProfile() {
+    myProfile = () => {
         dataService.fetchMyProfile()
             .then(res => {
                 console.log(res);
-                this.setState({
+                this.setState( {
                     myProfileData: res
                 })
             }) 
     }
-    ///changing state
-        // changingState = () => {
-        //     this.setState({
-        //         scrum: !this.state.scrum
-        //     })
-        // }
-
-
-    // //update input values in my profile
-    // updateFullNameInputValue = e => {
-    //     this.setState({
-    //         fullNameInputValue: e.target.value
-    //     });
-    // }
-    
-    // updatePictureInputValue = e => {
-    //     this.setState({
-    //         pictureInputValue: e.target.value
-    //     });
-    // }
-
-    // updateDescriptionInputValue = e => {
-    //     this.setState({
-    //         descriptionInputValue: e.target.value
-    //     });
-    // }
-
-    // updateMyProfile() {
-    //     let data = {
-    //         name: this.state.fullNameInputValue,
-    //         avatarUrl: this.state.pictureInputValue,
-    //         about: this.state.descriptionInputValue
-    //     }
-
-    //     // let data = {
-    //     //     name: name,
-    //     //     avatarUrl: avatar,
-    //     //     about: about
-    //     // }
-
-    //     console.log(this.state.fullNameInputValue);
-        
-    //     dataService.fetchUpdateMyProfile(data)
-    //         .then(res => {
-    //             console.log(res);
-    //             this.setState({
-    //                 updatedMyProfileData: res
-    //             })
-    //         })
-    // }
-
     componentDidMount() {
         this.myProfile();
     }
@@ -125,7 +70,7 @@ class Profile extends Component {
                     <p>{this.state.myProfileData.about}</p>
 
                     <Modal style={customStyles} isOpen={this.state.isOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
-                        <UpdateProfile /*changeFullName={this.updateFullNameInputValue} changePicture={this.updatePictureInputValue} changeDesc={this.updateDescriptionInputValue}*/ closeEditWindow={this.closeModal} updateWindow={this.updateMyProfile}/>
+                        <UpdateProfile refreshMyProfile={this.myProfile} onRequestClose={this.closeModal} /*changeFullName={this.updateFullNameInputValue} changePicture={this.updatePictureInputValue} changeDesc={this.updateDescriptionInputValue}*/ closeEditWindow={this.closeModal} /*updateWindow={this.updateMyProfile}*//>
                     </Modal>
     
                     <div className="Profile-Two-counters center">

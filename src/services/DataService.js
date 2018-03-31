@@ -47,7 +47,7 @@ class DataService {
         })
             .then(response => {
                 let myJSON = response.json();
-                
+
                 // console.log(myJSON);
                 return myJSON;
             })
@@ -69,7 +69,8 @@ class DataService {
             body: JSON.stringify(data)
         })
             .then(res => {
-                return res.json()
+                let myJSON = res.json();
+                return myJSON;
             })
     }
 
@@ -85,7 +86,8 @@ class DataService {
             body: JSON.stringify(data)
         })
             .then(res => {
-                return res.json()
+                let myJSON = res.json();
+                return myJSON;
             })
     }
 
@@ -101,9 +103,27 @@ class DataService {
             body: JSON.stringify(data)
         })
             .then(res => {
-                return res.json()
+                let myJSON = res.json();
+                return myJSON;
             })
     }
+
+    // fetchUploadImage(data) {
+    //     return fetch(`${url}upload`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Key': 'bitbook',
+    //             'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+    //             'Accept': "aplication/json"
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    //         .then(res => {
+    //             let myJSON = res.json();
+    //             return myJSON;
+    //         })
+    // }
 
     // puts
     fetchUpdateMyProfile(data) {
@@ -117,9 +137,11 @@ class DataService {
             },
             body: JSON.stringify(data)
         })
-        .then(res => {
-            return res.json()           
-        })
+            .then(res => {
+                if (res.status < 200 && res.status >= 300) {
+                    console.log("There was some error");
+                }
+            })
     }
 }
 

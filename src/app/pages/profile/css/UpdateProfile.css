@@ -45,6 +45,8 @@ h4 {
   :-moz-placeholder {
     color: Black;
   } */
-  .UpdateProdile-input-file {
-      width: 0;
+  .UpdateProfile-upload-wrapper {
+    display: flex;
+    align-items: flex-end;
   }
+  .UpdateProfile-upload-input { margin: 0 !important; }

@@ -3,7 +3,6 @@ import React from "react";
 import "./feed-css/FeedItemImage.css"
 
 const FeedItemImage = props => {
-    console.log(props);
     
     return (
         <div className="row container center">

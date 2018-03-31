@@ -14,7 +14,6 @@ class Feed extends Component {
             posts: [],
             filteredPosts: []
         }
-
     }
 
     componentDidMount() {
@@ -65,9 +64,7 @@ class Feed extends Component {
                             <FeedItem posts={this.state.filteredPosts}/>
                     </div>
                     <div>Fantastic 4</div>
-                </div>
-
-         
+                </div>       
         )
     }
 }

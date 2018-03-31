@@ -1,4 +1,4 @@
-.UpdateProfile {
+/* .UpdateProfile {
     min-width: 500px;
     margin: 0 auto!;
     z-index: 2;
@@ -44,4 +44,9 @@ h4 {
   }
   :-moz-placeholder {
     color: Black;
+  } */
+  .UpdateProfile-upload-wrapper {
+    display: flex;
+    align-items: flex-end;
   }
+  .UpdateProfile-upload-input { margin: 0 !important; }

@@ -6,7 +6,7 @@ import MyProfile from '../entities/MyProfile';
 const url = 'http://bitbookapi.azurewebsites.net/api/';
 
 class DataService {
-    
+
     //gets
     fetchPosts() {
         return fetch(`${url}/Posts`, {
@@ -124,7 +124,7 @@ return fetch(`${url}/Comments`, {
         })
             .then(response => {
                 let myJSON = response.json();
-                
+
                 // console.log(myJSON);
                 return myJSON;
             })
@@ -146,7 +146,8 @@ return fetch(`${url}/Comments`, {
             body: JSON.stringify(data)
         })
             .then(res => {
-                return res.json()
+                let myJSON = res.json();
+                return myJSON;
             })
     }
 
@@ -162,7 +163,8 @@ return fetch(`${url}/Comments`, {
             body: JSON.stringify(data)
         })
             .then(res => {
-                return res.json()
+                let myJSON = res.json();
+                return myJSON;
             })
     }
 
@@ -178,10 +180,47 @@ return fetch(`${url}/Comments`, {
             body: JSON.stringify(data)
         })
             .then(res => {
-                return res.json()
+                let myJSON = res.json();
+                return myJSON;
             })
     }
 
+    // fetchUploadImage(data) {
+    //     return fetch(`${url}upload`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Key': 'bitbook',
+    //             'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+    //             'Accept': "aplication/json"
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+    //         .then(res => {
+    //             let myJSON = res.json();
+    //             return myJSON;
+    //         })
+    // }
+
+    // puts
+    fetchUpdateMyProfile(data) {
+        return fetch(`${url}/profiles`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Accept': "aplication/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => {
+                if (res.status < 200 && res.status >= 300) {
+                    console.log("There was some error");
+                }
+            })
+    }
 }
+
 
 export const dataService = new DataService;

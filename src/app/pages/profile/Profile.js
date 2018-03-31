@@ -31,16 +31,15 @@ class Profile extends Component {
         }
     }
 
-    myProfile() {
+    myProfile = () => {
         dataService.fetchMyProfile()
             .then(res => {
                 console.log(res);
-                this.setState({
+                this.setState( {
                     myProfileData: res
                 })
             }) 
     }
-
     componentDidMount() {
         this.myProfile();
     }
@@ -58,7 +57,8 @@ class Profile extends Component {
     }
 
     render() {
-        if (this.state.myProfileData.length === 0) {
+        console.log(this.state.scrum);
+        if (this.state.myProfileData.length === 0 ) {
             return <h2>Loading....</h2>
         } else {
             return (
@@ -70,7 +70,7 @@ class Profile extends Component {
                     <p>{this.state.myProfileData.about}</p>
 
                     <Modal style={customStyles} isOpen={this.state.isOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
-                        <UpdateProfile closeEditWindow={this.closeModal} /*updateWindow={}*//>
+                        <UpdateProfile refreshMyProfile={this.myProfile} onRequestClose={this.closeModal} /*changeFullName={this.updateFullNameInputValue} changePicture={this.updatePictureInputValue} changeDesc={this.updateDescriptionInputValue}*/ closeEditWindow={this.closeModal} /*updateWindow={this.updateMyProfile}*//>
                     </Modal>
     
                     <div className="Profile-Two-counters center">

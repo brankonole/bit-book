@@ -1,9 +1,7 @@
 import React from "react";
 
 const FeedItemText = props => {
-
-    console.log(props);
-    
+ 
     return (
         <div className="row container center">
         <div className="col s12 m12">

@@ -3,7 +3,6 @@ import React from 'react';
 import "./SingleUser.css"
 
 const SingleUser = (props) => {
-    console.log(props)
     //time since last post 
 
     const timeSinceLastPost = (PostDate) => {
@@ -42,9 +41,6 @@ const SingleUser = (props) => {
             return avatarUrl
         }
     }
-
-    console.log(props);
-
     return (
         <React.Fragment>
             <div className="row container center">

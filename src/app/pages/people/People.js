@@ -10,7 +10,8 @@ class People extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            allUsers: []
+            allUsers: [],
+            filteredUsers: []
         }
     }
 
@@ -18,16 +19,27 @@ class People extends Component {
         dataService.fetchAllUsers()
         .then(res => 
              this.setState({
-            allUsers: res
+            allUsers: res,
+            filteredUsers: res
         }))
+    }
+// search bar 
+    search = (e) => {
+    e.preventDefault();
+    const users = this.state.allUsers
+    const filter = users.filter(element => element.name.toLowerCase().startsWith(e.target.value.toLowerCase()) )
+    this.setState({
+        filteredUsers: filter
+    })
+
     }
 
 
-    render() {
+    render() {   
         return (
             <React.Fragment>
-                <Search/>
-        {(this.state.allUsers.length !== 0? this.state.allUsers.map(element => <SingleUser data={element}/>): <SingleUserPlaceHolder/> )}
+                <Search search={this.search}/>
+        {(this.state.allUsers.length !== 0? this.state.filteredUsers.map(element => <SingleUser data={element}/>): <SingleUserPlaceHolder/> )}
             </React.Fragment>
         )
     }

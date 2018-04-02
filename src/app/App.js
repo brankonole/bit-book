@@ -9,6 +9,8 @@ import Profile from "./pages/profile/Profile"
 import People from './pages/people/People';
 import SingleFeed from "./pages/single_feed/SingleFeed"
 import LoginRegister from "./pages/login_register/LoginRegister"
+import SingleUser from './pages/people/SingleUser';
+import SingleUserPage from "./pages/single_user/SingleUserPage"
 
 class App extends Component {
   render() {
@@ -24,8 +26,9 @@ class App extends Component {
             {/*dodati type i id, da bi smo mogli da fetchujemo single postove*/}
             <Route exact path="/feed/:type/:id" component={SingleFeed}/> 
             <Route exact path="/home" component={LoginRegister}/>
-            <Redirect from="/" to="/home" />
+            {/* <Redirect from="/" to="/home" /> */}
             <Route exact path='/' component={Feed}/>
+            <Route exact path="/singleUser/:id" component={SingleUserPage} />
           </Switch>
         </main>
         <Footer/>

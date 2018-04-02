@@ -22,49 +22,45 @@ class Feed extends Component {
 
     getPosts = () => {
         dataService.fetchPosts()
-        .then(res =>{
-            this.setState({
-                posts : res,
-                filteredPosts: res
+            .then(res => {
+                this.setState({
+                    posts: res,
+                    filteredPosts: res
+                })
             })
-        })
     }
+
     //// filtering posts by type
     filter = (type) => {
-        if (this.state.posts.length !== 0 ) {
-        const filter = this.state.posts.filter(element => element.type == type) 
-        this.setState({
-            filteredPosts: filter
-        })
+        if (this.state.posts.length !== 0) {
+            const filter = this.state.posts.filter(element => element.type == type)
+            this.setState({
+                filteredPosts: filter
+            })
+        }
     }
-}
 
     /// antifiltering posts
-
-    antifilter= () => {
+    antifilter = () => {
         this.setState({
             filteredPosts: this.state.posts
         })
     }
-    
+
     render() {
-
         return (
-
-        
-     <div className="container">
-                    <div className='row'>
-                        <div className='main col s7 offset-s2'></div>
-                        <aside className='Feed-aside col s3'>
-                            {/* <NewPost /> */}
-                            <DropDown filter={this.filter} antifilter={this.antifilter}/>
-                            <Button refreshData={this.getPosts} />
-
-                        </aside>
-                            <FeedItem posts={this.state.filteredPosts}/>
+            <div className="container">
+                <div className='row Feed-container'>
+                    <div className='main col s9'>
+                        <FeedItem posts={this.state.filteredPosts} />
                     </div>
-                    <div>Fantastic 4</div>
-                </div>       
+                    <aside className='Feed-aside col s3'>
+                        {/* <NewPost /> */}
+                        <DropDown filter={this.filter} antifilter={this.antifilter} />
+                        <Button refreshData={this.getPosts} />
+                    </aside>
+                </div>
+            </div>
         )
     }
 }

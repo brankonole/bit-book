@@ -8,10 +8,7 @@ class DropDown extends Component {
         super(props)
     }
 
-   
-    
-    render() {
-        
+    render() {        
         return (
             <div className="DropDownMain-css">
             <li className='dropdown-button btn DropDown-css' data-activates='dropdown1'>ALL POSTS</li>

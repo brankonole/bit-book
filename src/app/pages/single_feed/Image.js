@@ -10,8 +10,8 @@ const Image = props => {
                 <div className="card-content ">
                     <img alt="" src={props.imageUrl} srcSet="" className="FeedItemImage-img"/>
                     <div className="FeedItem-inline-img FeedItem-inline">
-                        <p >Image  post</p> 
-                        <p> {props.commentsNum} Comment </p>
+                        <p>Image  post</p> 
+                        <p>{props.commentsNum} Comment </p>
                     </div>
                 </div>
             </div>

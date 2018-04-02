@@ -20,11 +20,10 @@ class DataService {
         })
             .then(response => {
                 let myJSON = response.json();
-
                 return myJSON;
             })
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 return response.map(e => {
                     if (e.type === 'image') {
                         return new ImagePost(e);
@@ -37,84 +36,84 @@ class DataService {
                 })
             })
     }
-// creating fetch for single post  //
-fetchSinglePost(type, id) {
-    let urlType;
 
-    //transforming type (video, image, text) to url that API expects //
-   
-    if (type === "video") {
-        urlType = "VideoPosts"
-    } else if(type === "text") {
-        urlType = "TextPosts"
-    }
-    else {
-        urlType = "ImagePosts"
-    }
+    // creating fetch for single post  //
+    fetchSinglePost(type, id) {
+        let urlType;
 
-    
-    return fetch(`${url}/${urlType}/${id}`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Key': 'bitbook',
-            'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
-        }})
-        .then(response => {
-            let myJson = response.json()
-            return myJson
-        })
-}
-//fetch comments
-
-fetchComments(id) {
-    return fetch(`${url}/Comments?postId=${id}`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Key': 'bitbook',
-            'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
-            'Accept': "aplication/json"
+        //transforming type (video, image, text) to url that API expects //
+        if (type === "video") {
+            urlType = "VideoPosts"
+        } else if (type === "text") {
+            urlType = "TextPosts"
         }
-    })
-        .then(response => {
-            let res = response.json();                
-            return res;
-        })   
-}
+        else {
+            urlType = "ImagePosts"
+        }
 
-//fetching single profile
-
-fetchingUser(id){
-    return fetch(`${url}/users/${id}`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Key': 'bitbook',
-            'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
-            'Accept': "aplication/json"}
+        return fetch(`${url}/${urlType}/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+            }
+        })
+            .then(response => {
+                let myJson = response.json()
+                return myJson
+            })
     }
-)
-.then(response => {
-    let a = response.json();   
-      return a;
-})   
-}
+    //fetch comments
 
-// sending comments on server
+    fetchComments(id) {
+        return fetch(`${url}/Comments?postId=${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Accept': "aplication/json"
+            }
+        })
+            .then(response => {
+                let res = response.json();
+                return res;
+            })
+    }
 
-sendComment(postId,  data) {
-return fetch(`${url}/Comments`, {
-    method: "POST",
-    headers: { 
-        'Content-Type': 'application/json',
-        'Key': 'bitbook',
-        'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
-    },
-   body: JSON.stringify({       
-    "body": data,
-    "postId": postId,
-  })
-})
+    //fetching single profile
 
-}
+    fetchingUser(id) {
+        return fetch(`${url}/users/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Accept': "aplication/json"
+            }
+        }
+        )
+            .then(response => {
+                let a = response.json();
+                return a;
+            })
+    }
+
+    // sending comments on server
+    sendComment(postId, data) {
+        return fetch(`${url}/Comments`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+            },
+            body: JSON.stringify({
+                "body": data,
+                "postId": postId,
+            })
+        })
+
+    }
     fetchMyProfile() {
         return fetch(`${url}/profile`, {
             headers: {
@@ -239,7 +238,5 @@ return fetch(`${url}/Comments`, {
     
 }
 }
-
-
 
 export const dataService = new DataService;

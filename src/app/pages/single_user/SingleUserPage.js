@@ -27,7 +27,6 @@ class SingleUserPage extends Component {
          }
          
          render() {
-             console.log(this.id);
              
              return (
                  (this.state.myProfileData.length === 0)? <Loading/> : 

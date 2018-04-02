@@ -75,10 +75,10 @@ class People extends Component {
 
     render() {
         return (
-            this.state.filteredUsers.length === 0? <Loading/> :
+            this.state.allUsers.length === 0? <Loading/> :
            ( <React.Fragment>
                 <Search search={this.search} inputValue={this.state.inputValue} clearSearchBar={this.clearSearchBar}/>
-             {(this.state.allUsers.length !== 0 ? this.state.filteredUsers.map(element => <Link to={`/singleUser/${element.id}`}><SingleUser data={element} /></Link>) : <SingleUserPlaceHolder />)} 
+             {(this.state.allUsers.length !== 0 ? this.state.filteredUsers.map(element => <SingleUser data={element} id={element.id}/>) : <SingleUserPlaceHolder />)} 
             </React.Fragment>)
         )
     }

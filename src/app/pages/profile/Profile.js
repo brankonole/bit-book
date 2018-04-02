@@ -66,7 +66,7 @@ class Profile extends Component {
             <p>{this.state.myProfileData.about}</p>
 
             <Modal style={customStyles} isOpen={this.state.isOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
-                <UpdateProfile refreshMyProfile={this.myProfile} onRequestClose={this.closeModal} /*changeFullName={this.updateFullNameInputValue} changePicture={this.updatePictureInputValue} changeDesc={this.updateDescriptionInputValue}*/ closeEditWindow={this.closeModal} /*updateWindow={this.updateMyProfile}*/ />
+                <UpdateProfile refreshMyProfile={this.myProfile} onRequestClose={this.closeModal} closeEditWindow={this.closeModal} />
             </Modal>
 
             <div className="Profile-Two-counters center">

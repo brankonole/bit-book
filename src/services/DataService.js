@@ -9,8 +9,8 @@ const url = 'http://bitbookapi.azurewebsites.net/api/';
 class DataService {
 
     //gets
-    fetchPosts() {
-        return fetch(`${url}/Posts`, {
+    fetchPosts(offset) {
+        return fetch(`${url}Posts?$skip=${offset}&$top=10&$orderby=DateCreated desc`, {
             headers: {
                 // 'Access-Control-Allow-Origin':'http://localhost:3000',
                 'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ class DataService {
                 return myJSON;
             })
             .then(response => {
-                // console.log(response)
+                console.log(response)
                 return response.map(e => {
                     if (e.type === 'image') {
                         return new ImagePost(e);

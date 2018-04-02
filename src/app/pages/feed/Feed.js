@@ -17,11 +17,11 @@ class Feed extends Component {
     }
 
     componentDidMount() {
-        this.getPosts();
+        this.getPosts(0);
     }
 
-    getPosts = () => {
-        dataService.fetchPosts()
+    getPosts = (offset) => {
+        dataService.fetchPosts(offset)
             .then(res => {
                 this.setState({
                     posts: res,
@@ -48,11 +48,12 @@ class Feed extends Component {
     }
 
     render() {
+        console.log(this.state.posts.length)
         return (
             <div className="container">
                 <div className='row Feed-container'>
                     <div className='main col s9'>
-                        <FeedItem posts={this.state.filteredPosts} />
+                        <FeedItem posts={this.state.filteredPosts} pagination={this.getPosts} pages={this.state.posts.length}/>
                     </div>
                     <aside className='Feed-aside col s3'>
                         {/* <NewPost /> */}
@@ -61,9 +62,6 @@ class Feed extends Component {
                     </aside>
                 </div>
             </div>
-        )
-    }
-}
-
+        )}}
 
 export default Feed;

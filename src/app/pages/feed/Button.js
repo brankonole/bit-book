@@ -147,7 +147,7 @@ class NewPost extends Component {
             dataService.uploadNewTextPost(data)
                 .then(res => {
                     // console.log(res);
-                    this.props.refreshData();
+                    this.props.refreshData(0);
                 })
             this.setState({
                 inputTextValue: ''

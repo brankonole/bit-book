@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 
 import FeedItemVideo from "./FeedItemVideo";
 import FeedItemImage from "./FeedItemImage";
@@ -15,14 +14,12 @@ const FeedItem = (props) => {
 
             props.posts.map(element => {
                 if (element.type === "video") {
-                    return (<Link to={`/feed/video/${element.id}`}>
-                        <FeedItemVideo src={element.videoUrl} commentsNum={element.commentsNum} />
-                    </Link>
+                    return (<FeedItemVideo src={element.videoUrl} commentsNum={element.commentsNum} id={element.id} deleteSinglePost={props.deleteSinglePost} />
                     )
                 } else if (element.type === "image") {
-                    return (<Link to={`/feed/image/${element.id}`}><FeedItemImage src={element.imageUrl} commentsNum={element.commentsNum} /> </Link>)
+                    return (<FeedItemImage src={element.imageUrl} commentsNum={element.commentsNum} id={element.id} deleteSinglePost={props.deleteSinglePost} /> )
                 } else {
-                    return (<Link to={`/feed/text/${element.id}`}><FeedItemText text={element.text} commentsNum={element.commentsNum} /> </Link>)
+                    return (<FeedItemText text={element.text} commentsNum={element.commentsNum} id={element.id} deleteSinglePost={props.deleteSinglePost}/>)
                 }
             })
     )

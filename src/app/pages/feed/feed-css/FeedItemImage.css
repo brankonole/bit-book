@@ -1,10 +1,9 @@
-.FeedItemImage-img {
-    width: 100%;
+.FeedItemImage-img { width: 100%; }
+.FeedItemImage-right { display: flex; }
+.FeedItemImage-right p { margin-right: 20px !important; } 
+.FeedItemImage-delete { cursor: pointer; }
+.FeedItemImage-content { 
+    display: block;
+    padding-bottom: 40px;
+    width: 100% !important;
 }
-
-/* .FeedItem-inline-img p {
-    float: left;
-}
-.FeedItemImage-secondp {
-    float: right;
-} */ 

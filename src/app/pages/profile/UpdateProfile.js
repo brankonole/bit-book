@@ -47,7 +47,7 @@ class UpdateProfile extends Component {
 
     dataService.fetchUpdateMyProfile(data)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.setState({
           updatedMyProfileData: res
         })
@@ -57,9 +57,6 @@ class UpdateProfile extends Component {
   }
 
   render() {
-    console.log(this.state.fullNameInputValue);
-    console.log(this.state.pictureInputValue);
-
     return (
       <div className="UpdateProfile">
         <h4>Update profile</h4>
@@ -79,7 +76,10 @@ class UpdateProfile extends Component {
                 <input className='UpdateProfile-upload-input' type="text" id="input_text" data-length="10" required="" placeholder="Insert new profile picture" onChange={this.updatePictureInputValue}/>
               </div>
             </div>
-            {/* <div className='file-field input-field'>
+            
+            {/* !!!This is for upload from disc  */}
+            
+            {/*<div className='file-field input-field'>
               <div className="btn">
                 <span>Upload</span>
                 <input type="file" onChange={this.updatePictureInputValue} />

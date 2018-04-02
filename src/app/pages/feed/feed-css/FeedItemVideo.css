@@ -1,3 +1,7 @@
-/* .FeedItem-inline-1 {
-    float: left;
-} */
+.FeedItemVideo-right { display: flex; }
+.FeedItemVideo-right p { margin-right: 20px !important; }
+.FeedItemVideo-delete { cursor: pointer; }
+.FeedItemVideo-content {
+    display: block;
+    padding-bottom: 40px;
+}

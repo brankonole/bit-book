@@ -22,7 +22,6 @@ class App extends Component {
             <Route path='/profile' component={Profile}/>
             <Route exact path='/people' component={People}/>
             <Route exact path='/feed' component={Feed}/>
-            
             {/*dodati type i id, da bi smo mogli da fetchujemo single postove*/}
             <Route exact path="/feed/:type/:id" component={SingleFeed}/> 
             <Route exact path="/home" component={LoginRegister}/>

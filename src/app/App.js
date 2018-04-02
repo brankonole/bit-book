@@ -28,6 +28,7 @@ class App extends Component {
             <Route exact path="/home" component={LoginRegister}/>
             {/* <Redirect from="/" to="/home" /> */}
             <Route exact path='/' component={Feed}/>
+            {/* SingleUserPage leads you to profile of some user other than you*/}
             <Route exact path="/singleUser/:id" component={SingleUserPage} />
           </Switch>
         </main>

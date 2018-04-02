@@ -20,13 +20,21 @@ class People extends Component {
             .then(res =>
                 this.setState({
                     allUsers: res,
-                    filteredUsers: res
+                    filteredUsers: res,
+                    inputValue: ''
                 }))
     }
     // search bar 
     search = (e) => {
         e.preventDefault();
         const users = this.state.allUsers
+
+        /// set state za input value
+
+        this.setState({
+            inputValue: e.target.value
+        })
+
         // we use function filter to sort array of users
         const filter = users.filter(element => {
             // we are dividing this code in two parts
@@ -34,7 +42,12 @@ class People extends Component {
             if (element.name.split(" ").length > 1)
             /// conditions of filter function must be in return
            { return (
-                element.name.split(" ")[0].toLowerCase().startsWith(e.target.value.toLowerCase()) || element.name.split(" ")[1].toLowerCase().startsWith(e.target.value.toLowerCase())
+               /// search first name
+                element.name.split(" ")[0].toLowerCase().startsWith(e.target.value.toLowerCase()) ||
+                // search last name
+                 element.name.split(" ")[1].toLowerCase().startsWith(e.target.value.toLowerCase()) ||
+                 /// search first and last name with spaces
+                 element.name.toLowerCase().startsWith(e.target.value.toLowerCase())
             )}
            // in this case we are handling situation where we have user with just name and not surname 
             else {
@@ -45,16 +58,25 @@ class People extends Component {
         this.setState({
             filteredUsers: filter
         })
-    
-
     }
+
+    // clear search bar
+
+    clearSearchBar = (e) => {
+        this.setState({
+            inputValue: '',
+            filteredUsers: this.state.allUsers
+        })
+    }
+ 
+
 
 
     render() {
         return (
             <React.Fragment>
-                <Search search={this.search} />
-                {(this.state.allUsers.length !== 0 ? this.state.filteredUsers.map(element => <SingleUser data={element} />) : <SingleUserPlaceHolder />)}
+                <Search search={this.search} inputValue={this.state.inputValue} clearSearchBar={this.clearSearchBar}/>
+             {(this.state.allUsers.length !== 0 ? this.state.filteredUsers.map(element => <Link to="/singleUser"><SingleUser data={element} /></Link>) : <SingleUserPlaceHolder />)} 
             </React.Fragment>
         )
     }

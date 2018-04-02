@@ -12,11 +12,9 @@ class AddComment extends Component {
             commentInput: "",
             warning: ""
         }
-
     }
 
     // function that catches text input from comment 
-
     commentInput = (e) => {
         this.setState({
             commentInput: e.target.value,
@@ -32,7 +30,6 @@ class AddComment extends Component {
     }
 
     /// add comments
-
     sendComments = (e) => {
         /// warning if there are not character input 
         if (this.state.commentInput == "") {
@@ -43,21 +40,19 @@ class AddComment extends Component {
         }
     }
 
-
     render() {
         return (
             <div className="container">
                 <div className="AddComment-row row">
                     <label className="col s8 m8 l8 ">
-                        <input type="text" value={this.state.commentInput} onChange={this.commentInput} maxlength={numberOfCharacters} placeholder="Add your comment" required />
+                        <input type="text" value={this.state.commentInput} onChange={this.commentInput} maxLength={numberOfCharacters} placeholder="Add your comment" required />
                     </label>
                     <button className="btn blue col s4 m4 l4 " onClick={this.sendComments} type="submit">Send</button>
                 </div>
-                <p class="red">{this.state.warning}</p>
+                <p className="red">{this.state.warning}</p>
             </div>
         )
     }
 }
-
 
 export default AddComment;

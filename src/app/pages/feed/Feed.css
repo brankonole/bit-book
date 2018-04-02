@@ -1,3 +1,5 @@
+.Feed-container { margin-top: 20px; }
+.Feed-aside { margin-top: 0.5rem; }
 .FeedItem-inline {
     display: flex;
     justify-content: flex-end;

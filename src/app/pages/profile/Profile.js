@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { dataService } from '../../../services/DataService';
 import UpdateProfile from "./UpdateProfile";
 import Modal from 'react-modal';
+import Loading from '../../shared/Loading';
 
 import "./css/Profile.css";
 
@@ -19,7 +20,7 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         width: '50%'
     }
-  };
+};
 
 class Profile extends Component {
     constructor(props) {
@@ -35,10 +36,10 @@ class Profile extends Component {
         dataService.fetchMyProfile()
             .then(res => {
                 console.log(res);
-                this.setState( {
+                this.setState({
                     myProfileData: res
                 })
-            }) 
+            })
     }
     componentDidMount() {
         this.myProfile();
@@ -56,30 +57,27 @@ class Profile extends Component {
         })
     }
 
-    render() {
-        console.log(this.state.scrum);
-        if (this.state.myProfileData.length === 0 ) {
-            return <h2>Loading....</h2>
-        } else {
-            return (
-                <div className="col s2 container Profile">
-                    <img id="Profile-img" src={this.state.myProfileData.avatarUrl} alt="" className="circle responsive-img" />
-                    <h3>{this.state.myProfileData.name}</h3>
-                    <Link to={`/profile`} onClick={this.openModal}>Edit profile</Link>
-                    {/* <EditProfile /> */}
-                    <p>{this.state.myProfileData.about}</p>
+    renderProfile() {
+        return <div className="col s2 container Profile">
+            <img id="Profile-img" src={this.state.myProfileData.avatarUrl} alt="" className="circle responsive-img" />
+            <h3>{this.state.myProfileData.name}</h3>
+            <Link to={`/profile`} onClick={this.openModal}>Edit profile</Link>
+            {/* <EditProfile /> */}
+            <p>{this.state.myProfileData.about}</p>
 
-                    <Modal style={customStyles} isOpen={this.state.isOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
-                        <UpdateProfile refreshMyProfile={this.myProfile} onRequestClose={this.closeModal} /*changeFullName={this.updateFullNameInputValue} changePicture={this.updatePictureInputValue} changeDesc={this.updateDescriptionInputValue}*/ closeEditWindow={this.closeModal} /*updateWindow={this.updateMyProfile}*//>
-                    </Modal>
-    
-                    <div className="Profile-Two-counters center">
-                        <div className="Profile-one left"><div className='Profile-c'>C</div><p>{this.state.myProfileData.postsCount}</p></div>
-                        <div className="Profile-one"><div className='Profile-c'>C</div><p>{this.state.myProfileData.commentsCount}</p></div>
-                    </div>
-                </div>
-            )
-        }
+            <Modal style={customStyles} isOpen={this.state.isOpen} onRequestClose={this.closeModal} contentLabel="Example Modal">
+                <UpdateProfile refreshMyProfile={this.myProfile} onRequestClose={this.closeModal} /*changeFullName={this.updateFullNameInputValue} changePicture={this.updatePictureInputValue} changeDesc={this.updateDescriptionInputValue}*/ closeEditWindow={this.closeModal} /*updateWindow={this.updateMyProfile}*/ />
+            </Modal>
+
+            <div className="Profile-Two-counters center">
+                <div className="Profile-one left"><div className='Profile-c'>C</div><p>{this.state.myProfileData.postsCount}</p></div>
+                <div className="Profile-one"><div className='Profile-c'>C</div><p>{this.state.myProfileData.commentsCount}</p></div>
+            </div>
+        </div>
+    }
+
+    render() {
+        return (JSON.stringify(this.state.myProfileData) === '{}') ? <Loading /> : this.renderProfile();
     }
 }
 

@@ -9,8 +9,8 @@ const Text= props => {
                 <div className="card-content">
                     <p>{props.text}</p> 
                     <div className="FeedItem-inline">
-                        <p >Text post</p>
-                        <p > {props.commentsNum}  Comment</p>
+                        <p>Text post</p>
+                        <p>{props.commentsNum}  Comment</p>
                     </div>
                  </div>
             </div>

@@ -10,7 +10,7 @@ class Header extends Component {
             <header>
                 <nav className='teal lighten-2'>
                     <div className="nav-wrapper container">
-                        <Link to="/" className="brand-logo">BitBook</Link>
+                        <Link to="/home" className="brand-logo">BitBook</Link>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
                             <li><Link to="/feed">Feed</Link></li>
                             <li><Link to="/people">People</Link></li>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom"
 
 import "./SingleUser.css"
 
@@ -44,6 +45,7 @@ const SingleUser = (props) => {
     return (
         <React.Fragment>
             <div className="row container center">
+            <Link to={`/singleUser/${props.id}`}>
                 <div className="col s12 m12">
                     <div className="card horizontal hoverable">
                         {/* <i className="large material-icons">account_circle</i> */}
@@ -57,6 +59,7 @@ const SingleUser = (props) => {
                         </div>
                     </div>
                 </div>
+                </Link>
             </div>
         </React.Fragment>
     )

@@ -5,6 +5,7 @@ import SingleUser from './SingleUser';
 import Search from './Search';
 import { dataService } from "../../../services/DataService"
 import SingleUserPlaceHolder from "./SingleUserPlaceHolder"
+import Loading from '../../shared/Loading';
 
 class People extends Component {
     constructor(props) {
@@ -74,10 +75,11 @@ class People extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            this.state.allUsers.length === 0? <Loading/> :
+           ( <React.Fragment>
                 <Search search={this.search} inputValue={this.state.inputValue} clearSearchBar={this.clearSearchBar}/>
-             {(this.state.allUsers.length !== 0 ? this.state.filteredUsers.map(element => <Link to="/singleUser"><SingleUser data={element} /></Link>) : <SingleUserPlaceHolder />)} 
-            </React.Fragment>
+             {(this.state.allUsers.length !== 0 ? this.state.filteredUsers.map(element => <SingleUser data={element} id={element.id}/>) : <SingleUserPlaceHolder />)} 
+            </React.Fragment>)
         )
     }
 }

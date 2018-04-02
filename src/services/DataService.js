@@ -4,7 +4,7 @@ import VideoPost from '../entities/VideoPost';
 import MyProfile from '../entities/MyProfile';
 import User from "../entities/User";
 
-const url = 'http://bitbookapi.azurewebsites.net/api/';
+const url = 'http://bitbookapi.azurewebsites.net/api';
 
 class DataService {
 
@@ -186,7 +186,7 @@ class DataService {
     }
 
     // fetchUploadImage(data) {
-    //     return fetch(`${url}upload`, {
+    //     return fetch(`${url}/upload`, {
     //         method: 'POST',
     //         headers: {
     //             'Content-Type': 'application/json',
@@ -223,20 +223,37 @@ class DataService {
 
 
     //// fetching all users 
-    
+
     fetchAllUsers() {
-        return fetch(`${url}/users`,  {
+        return fetch(`${url}/users`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': 'bitbook',
                 'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
                 'Accept': "aplication/json"
             }
-    })
-    .then(res => res.json())
-    
-    
-}
+        })
+            .then(res => res.json())
+    }
+
+    //Delete single post
+
+    fetchDeleteSinglePost(id) {
+        return fetch(`${url}/Posts/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Accept': "aplication/json"
+            }
+        })
+        .then(res => {
+            if (res.status < 200 && res.status >= 300) {
+                console.log("There was some error");
+            }
+        })
+    }
 }
 
 export const dataService = new DataService;

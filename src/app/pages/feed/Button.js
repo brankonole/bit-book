@@ -32,26 +32,21 @@ class NewPost extends Component {
             inputImageValue: '',
             isValidate: true
         };
-
-        this.openModalVideo = this.openModalVideo.bind(this);
-        this.openModalImage = this.openModalImage.bind(this);
-        this.openModalText = this.openModalText.bind(this);
-        this.closeModal = this.closeModal.bind(this);
     }
 
-    openModalVideo() {
+    openModalVideo = () => {
         this.setState({ modalIsOpen: true, modalName: "video" });
     }
 
-    openModalImage() {
+    openModalImage = () => {
         this.setState({ modalIsOpen: true, modalName: "image" });
     }
 
-    openModalText() {
+    openModalText = () => {
         this.setState({ modalIsOpen: true, modalName: "text" });
     }
 
-    closeModal() {
+    closeModal = () => {
         this.setState({
             modalIsOpen: false,
             inputTextValue: '',
@@ -62,7 +57,6 @@ class NewPost extends Component {
 
     // render posts modals
     renderVideoModal() {
-        console.log("videoooo")
         return (<div>
             <div className='Button-header'>
                 <h4 ref={subtitle => this.subtitle = subtitle} className='Button-title'>New video post</h4>
@@ -146,7 +140,6 @@ class NewPost extends Component {
             this.closeModal();
             dataService.uploadNewTextPost(data)
                 .then(res => {
-                    // console.log(res);
                     this.props.refreshData();
                 })
             this.setState({

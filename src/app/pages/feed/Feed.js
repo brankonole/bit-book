@@ -47,12 +47,21 @@ class Feed extends Component {
         })
     }
 
+    deleteSinglePost = (id) => {
+        dataService.fetchDeleteSinglePost(id)
+            .then(res => {
+                this.getPosts();
+            })
+    }
+
     render() {
+        console.log(this.state.filteredPosts);
+        
         return (
             <div className="container">
                 <div className='row Feed-container'>
                     <div className='main col s9'>
-                        <FeedItem posts={this.state.filteredPosts} />
+                        <FeedItem posts={this.state.filteredPosts} deleteSinglePost={this.deleteSinglePost}/>
                     </div>
                     <aside className='Feed-aside col s3'>
                         {/* <NewPost /> */}

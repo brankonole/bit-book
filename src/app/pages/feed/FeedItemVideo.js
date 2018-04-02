@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+import { Link } from "react-router-dom";
 
 import "./feed-css/FeedItemVideo.css"
 
@@ -13,10 +14,15 @@ const FeedItemVideo = props => {
             <div className="col s12 m12">
                 <div className="card horizontal hoverable">
                     <div className="card-content left-align">
-                        <iframe width="100%" height="315" src={src} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                        <Link to={`/feed/video/${props.id}`}>
+                            <iframe width="100%" height="315" src={src} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen className="FeedItemVideo-content"></iframe>
+                        </Link>
                         <div className="FeedItem-inline">
                             <p>Video post</p>
-                            <p>{props.commentsNum} Comment</p>
+                            <div className='FeedItemVideo-right'>
+                                <p>{props.commentsNum} Comment</p>
+                                <i className="material-icons dp48 FeedItemVideo-delete" onClick={() => { props.deleteSinglePost(props.id) }}>delete_forever</i>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import TextPost from '../entities/TextPost';
 import ImagePost from '../entities/ImagePost';
 import VideoPost from '../entities/VideoPost';
 import MyProfile from '../entities/MyProfile';
+import User from "../entities/User";
 
 const url = 'http://bitbookapi.azurewebsites.net/api/';
 
@@ -219,6 +220,23 @@ class DataService {
                 }
             })
     }
+
+
+    //// fetching all users 
+    
+    fetchAllUsers() {
+        return fetch(`${url}/users`,  {
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': 'bitbook',
+                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Accept': "aplication/json"
+            }
+    })
+    .then(res => res.json())
+    
+    
+}
 }
 
 export const dataService = new DataService;

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
-import Button from './Button';
 import DropDown from './DropDown';
 import FeedItem from './FeedItem';
 import { dataService } from '../../../services/DataService';
+import AddDifferentPosts from './AddDifferentPosts';
 
-import './Feed.css';
+
+import './feed-css/Feed.css';
 
 class Feed extends Component {
     constructor(props) {
@@ -66,7 +67,7 @@ class Feed extends Component {
                     <aside className='Feed-aside col s3'>
                         {/* <NewPost /> */}
                         <DropDown filter={this.filter} antifilter={this.antifilter} />
-                        <Button refreshData={this.getPosts} />
+                        <AddDifferentPosts refreshData={this.getPosts} />
                     </aside>
                 </div>
             </div>

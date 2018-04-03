@@ -11,10 +11,13 @@ class UpdateProfile extends Component {
       fullNameInputValue: '',
       pictureInputValue: '',
       descriptionInputValue: '',
-      updatedMyProfileData: {}
-    }
+      updatedMyProfileData: {},
+      isValidate: true
+    };
 
   }
+  //validacija za update profila
+
   //update input values in my profile
   updateFullNameInputValue = e => {
 
@@ -57,6 +60,8 @@ class UpdateProfile extends Component {
   }
 
   render() {
+    console.log(this.state.isValidate);
+    
     return (
       <div className="UpdateProfile">
         <h4>Update profile</h4>
@@ -67,18 +72,19 @@ class UpdateProfile extends Component {
               <div className="input-field col s6">
                 <label htmlFor="input_text"></label>
                 <input id="input_text" type="text" data-length="10" required placeholder="Full Name" onChange={this.updateFullNameInputValue} />
+                {this.state.isValidate ? '' : <p>Please provide your full name</p>}
               </div>
             </div>
             <div className="row UpdateProfile-upload-wrapper">
               {/* <a className="waves-effect waves-light btn UpdateProfile-button col s3">Upload</a> */}
               <div className="input-field col s12">
                 <label htmlFor="input_text"></label>
-                <input className='UpdateProfile-upload-input' type="text" id="input_text" data-length="10" required="" placeholder="Insert new profile picture" onChange={this.updatePictureInputValue}/>
+                <input className='UpdateProfile-upload-input' type="text" id="input_text" data-length="10" required="" placeholder="Insert new profile picture" onChange={this.updatePictureInputValue} />
               </div>
             </div>
-            
+
             {/* !!!This is for upload from disc  */}
-            
+
             {/*<div className='file-field input-field'>
               <div className="btn">
                 <span>Upload</span>

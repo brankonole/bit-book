@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, Icon, Dropdown } from 'react-materialize';
 
-import './feed-css/DropDown.css';
-
 const DropDown = (props) => {
     return (
         <div >

@@ -5,6 +5,9 @@ import MyProfile from '../entities/MyProfile';
 import User from "../entities/User";
 
 const url = 'http://bitbookapi.azurewebsites.net/api';
+const key = 'bitbook';
+let sessionId = '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94';
+
 
 class DataService {
 
@@ -14,8 +17,8 @@ class DataService {
             headers: {
                 // 'Access-Control-Allow-Origin':'http://localhost:3000',
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+                'Key': key,
+                'SessionId': sessionId
             }
         })
             .then(response => {
@@ -54,8 +57,8 @@ class DataService {
         return fetch(`${url}/${urlType}/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+                'Key': key,
+                'SessionId': sessionId
             }
         })
             .then(response => {
@@ -69,8 +72,8 @@ class DataService {
         return fetch(`${url}/Comments?postId=${id}`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Key': key,
+                'SessionId': sessionId,
                 'Accept': "aplication/json"
             }
         })
@@ -86,8 +89,8 @@ class DataService {
         return fetch(`${url}/users/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Key': key,
+                'SessionId': sessionId,
                 'Accept': "aplication/json"
             }
         }
@@ -104,8 +107,8 @@ class DataService {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+                'Key': key,
+                'SessionId': sessionId
             },
             body: JSON.stringify({
                 "body": data,
@@ -118,8 +121,8 @@ class DataService {
         return fetch(`${url}/profile`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94'
+                'Key': key,
+                'SessionId': sessionId
             }
         })
             .then(response => {
@@ -139,8 +142,8 @@ class DataService {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Key': key,
+                'SessionId': sessionId,
                 'Accept': "aplication/json"
             },
             body: JSON.stringify(data)
@@ -156,8 +159,8 @@ class DataService {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Key': key,
+                'SessionId': sessionId,
                 'Accept': "aplication/json"
             },
             body: JSON.stringify(data)
@@ -173,8 +176,8 @@ class DataService {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Key': key,
+                'SessionId': sessionId,
                 'Accept': "aplication/json"
             },
             body: JSON.stringify(data)
@@ -190,8 +193,8 @@ class DataService {
     //         method: 'POST',
     //         headers: {
     //             'Content-Type': 'application/json',
-    //             'Key': 'bitbook',
-    //             'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+    //             'Key': key,
+    //             'SessionId': sessionId,
     //             'Accept': "aplication/json"
     //         },
     //         body: JSON.stringify(data)
@@ -208,8 +211,8 @@ class DataService {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Key': key,
+                'SessionId': sessionId,
                 'Accept': "aplication/json"
             },
             body: JSON.stringify(data)
@@ -228,8 +231,8 @@ class DataService {
         return fetch(`${url}/users`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Key': key,
+                'SessionId': sessionId,
                 'Accept': "aplication/json"
             }
         })
@@ -243,8 +246,8 @@ class DataService {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Key': 'bitbook',
-                'SessionId': '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94',
+                'Key': key,
+                'SessionId': sessionId,
                 'Accept': "aplication/json"
             }
         })

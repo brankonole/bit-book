@@ -29,5 +29,9 @@ h5
 
 .confirmation-tabs-btn{
 	position: absolute;
-} 
+}
 
+.LoginRegister-link {
+	color: #009688 !important;
+	text-decoration: none;
+}

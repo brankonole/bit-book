@@ -257,6 +257,43 @@ class DataService {
             }
         })
     }
+
+    //Login
+
+    fetchLogin(data) {
+        return fetch(`${url}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': key,
+                'SessionId': sessionId,
+                'Accept': "aplication/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            let myJSON = res.json();
+            return myJSON;
+        })
+    }
+
+    //Register
+
+    fetchRegister(data) {
+        return fetch(`${url}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': key,
+                'Accept': "aplication/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            let myJSON = res.json();
+            return myJSON;
+        })
+    }
 }
 
 export const dataService = new DataService;

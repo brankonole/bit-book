@@ -6,8 +6,9 @@ import User from "../entities/User";
 
 const url = 'http://bitbookapi.azurewebsites.net/api';
 const key = 'ABD7540';
-let sessionId = '0e8e3f67-f099-4a12-a7bb-3d0073058e93';
 
+const storage = JSON.parse(sessionStorage.getItem("userInfo"))
+let sessionId = storage.sessionId;
 
 class DataService {
 
@@ -272,8 +273,18 @@ class DataService {
             body: JSON.stringify(data)
         })
         .then(res => {
+            console.log(res);
+            
             let myJSON = res.json();
             return myJSON;
+        })
+        .then(response => {
+            this.fetchMyProfile()
+            .then(myInfo => {
+                sessionStorage.setItem('myId', JSON.stringify(myInfo.userId));
+            })
+
+            sessionStorage.setItem('userInfo', JSON.stringify(response));
         })
     }
 

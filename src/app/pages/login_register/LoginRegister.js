@@ -13,14 +13,16 @@ class LoginRegister extends Component {
 			firstNameInputVal: '',
 			lastNameInputVal: '',
 			emailInputVal: '',
-			passInputVal: ''
+			passInputVal: '',
+			loginEmailInputVal: '',
+			loginPasswordInputVal: ''
 		}
 	}
 
 	//pokupiti vrednosti pakovati u objekat kad pozovemo Login Register prosledimo objekat
 
 	registerUser = () => {
-		let data = {
+		const data = {
 			"username": this.state.emailInputVal,
 			"password": this.state.passInputVal,
 			"name": this.state.firstNameInputVal,
@@ -29,10 +31,39 @@ class LoginRegister extends Component {
 
 		dataService.fetchRegister(data)
 			.then(res => {
-				sessionStorage.setItem('user', JSON.stringify(res));
+				// je l' sve proslo kako treba
 			})
 	}
 
+	loginUser = () => {
+		const data = {
+			"username": this.state.loginEmailInputVal,
+			"password": this.state.loginPasswordInputVal
+		}
+
+		dataService.fetchLogin(data)
+			.then(response => {
+				this.props.loggedIn(true);
+			})
+	}
+
+	// Inputi za Login
+	//*********/
+
+	inputAddEmail = (e) => {
+		this.setState({
+			loginEmailInputVal: e.target.value
+		})
+	}
+
+	inputAddPassword = (e) => {
+		this.setState({
+			loginPasswordInputVal: e.target.value
+		})
+	}
+
+	//Inputi za Register
+	/****** */
 	addFirstName = (e) => {
 		this.setState({
 			firstNameInputVal: e.target.value
@@ -68,35 +99,35 @@ class LoginRegister extends Component {
 					</TabList>
 					<TabPanel>
 						<div id="login" className="col s12">
-							<form className="col s6">
+							<div className="col s6">
 								<div className="form-container">
 									<h3 className="teal-text">Hello</h3>
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="email" className="validate" />
+											<input type="email" className="validate" onChange={this.inputAddEmail}/>
 											<label htmlFor="email">Email</label>
 										</div>
 									</div>
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="password" className="validate" />
+											<input type="password" className="validate" onChange={this.inputAddPassword} />
 											<label htmlFor="password">Password</label>
 										</div>
 									</div>
 									<br />
 									<center>
-										<button className="btn waves-effect waves-light teal" type="submit" name="action">Connect</button>
+										<button className="btn waves-effect waves-light teal" type="button" name="action" onClick={this.loginUser}>Connect</button>
 										<br />
 										<br />
 										<a href="">Forgotten password?</a>
 									</center>
 								</div>
-							</form>
+							</div>
 						</div>
 					</TabPanel>
 					<TabPanel>
 						<div id="register" className="col s12">
-							<form className="col s12">
+							<div className="col s12">
 								<div className="form-container">
 									<h3 className="teal-text">Welcome</h3>
 									<div className="row">
@@ -124,10 +155,10 @@ class LoginRegister extends Component {
 										</div>
 									</div>
 									<center>
-										<button className="btn waves-effect waves-light teal" type="submit" name="action" onClick={this.registerUser}>Submit</button>
+										<button className="btn waves-effect waves-light teal" type="button" name="action" onClick={this.registerUser}>Submit</button>
 									</center>
 								</div>
-							</form>
+							</div>
 						</div>
 					</TabPanel>
 				</Tabs>

@@ -57,6 +57,8 @@ class Profile extends Component {
     }
 
     renderProfile() {
+        console.log(this.state.myProfileData);
+        
         return <div className="col s2 container Profile">
             <img id="Profile-img" src={this.state.myProfileData.avatarUrl} alt="" className="circle responsive-img" />
             <h3>{this.state.myProfileData.name}</h3>

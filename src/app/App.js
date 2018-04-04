@@ -13,13 +13,30 @@ import SingleUser from './pages/people/SingleUser';
 import SingleUserPage from "./pages/single_user/SingleUserPage"
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isLoggedIn: false
+    }
+  }
+
+  handleLogIn = (isLoggedIn,e) => {
+    // e.preventDefault();
+    this.setState({
+      isLoggedIn: isLoggedIn
+    })
+  }
+
   render() {
+    console.log(this.state.isLoggedIn)
     return (
       <React.Fragment>
         <Header/>
         <main>
-          {(true) ?
+          {sessionStorage.getItem("userInfo")?
           <Switch>
+            <Redirect from='/login' to='/feed' component={Feed}/>
             <Route path='/profile' component={Profile}/>
             <Route exact path='/people' component={People}/>
             <Route exact path='/feed' component={Feed}/>
@@ -33,7 +50,7 @@ class App extends Component {
             <Route exact path="/singleUser/:id" component={SingleUserPage} />
           </Switch> :
           <Switch>
-            <Route path='/login' component={LoginRegister} />
+            <Route path='/login' render={() => <LoginRegister loggedIn={this.handleLogIn} />} />
             <Route path='/register' component={LoginRegister} />
             <Redirect from='/' to='/login' component={LoginRegister} />
           </Switch>}

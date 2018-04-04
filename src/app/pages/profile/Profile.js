@@ -35,7 +35,6 @@ class Profile extends Component {
     myProfile = () => {
         dataService.fetchMyProfile()
             .then(res => {
-                console.log(res);
                 this.setState({
                     myProfileData: res
                 })

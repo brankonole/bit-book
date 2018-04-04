@@ -40,7 +40,6 @@ class NewImagePost extends Component {
         
         dataService.uploadNewImagePost(data)
         .then(res => {
-            console.log(res);
                 this.props.onRequestClose();
                 this.props.refreshData();
             });

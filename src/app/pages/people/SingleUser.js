@@ -12,9 +12,10 @@ const SingleUser = (props) => {
         const dateNowDay = dateNow.getDate()
         const dateNowMonth = dateNow.getMonth()
         const dateNowYear = dateNow.getFullYear();
-
-        /// kreiranje objekta datum iz inforamcija u vezi zadnjeg posta
-        const postDate = new Date(PostDate);
+        
+        /// kreiranje objekta datum iz inforamcija u vezi zadnjeg posta, "z" je dodato eto zato
+        const postDate = new Date(PostDate + "z");
+        
         //// transformisanje minuta i sata u format 0x, npr ako imamo 6 minut -> bice 06
         const postDateMinute = (postDate.getMinutes() < 10 ? "0" : "") + postDate.getMinutes();
         const postDateHours = (postDate.getHours() < 10 ? "0" : "") + postDate.getHours();
@@ -26,11 +27,15 @@ const SingleUser = (props) => {
 
         /// uporedjivanje vreme posta i danasnjeg datuma, da li su nastali istog dana
         /// ako jesu, prikazati vreme posta u formatu hh:mm
-        if (dateNowDay == postDateDay && dateNowMonth == postDateMonth && dateNowYear == postDateYear) {
+
+        if (PostDate === null) {
+            return "No posts yet!!!"
+        }
+        else if (dateNowDay == postDateDay && dateNowMonth == postDateMonth && dateNowYear == postDateYear) {
             return (`${postDateHours}:${postDateMinute}`)
             //// ako nisu, prikazujemo datum i vreme posta
         } else {
-            return (`${postDateDay}/${postDateMonth}/${postDateYear}/${postDateHours}:${postDateMinute}`)
+            return (`${postDateDay}/${postDateMonth}/${postDateYear}/ ${postDateHours}:${postDateMinute}`)
         }
     }
 
@@ -55,7 +60,7 @@ const SingleUser = (props) => {
                             <p>{props.data.aboutShort}</p>
                         </div>
                         <div className=" col s4">
-                            <p>Last post at <br />{timeSinceLastPost("2017-04-01T08:05:14.0766667")}</p>
+                            <p>Last post at <br />{timeSinceLastPost(props.data.lastPostDate)}</p>
                         </div>
                     </div>
                 </div>

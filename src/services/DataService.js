@@ -5,8 +5,8 @@ import MyProfile from '../entities/MyProfile';
 import User from "../entities/User";
 
 const url = 'http://bitbookapi.azurewebsites.net/api';
-const key = 'bitbook';
-let sessionId = '7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94';
+const key = 'ABD7540';
+let sessionId = '0e8e3f67-f099-4a12-a7bb-3d0073058e93';
 
 
 class DataService {
@@ -26,7 +26,6 @@ class DataService {
                 return myJSON;
             })
             .then(response => {
-                // console.log(response)
                 return response.map(e => {
                     if (e.type === 'image') {
                         return new ImagePost(e);
@@ -128,7 +127,6 @@ class DataService {
             .then(response => {
                 let myJSON = response.json();
 
-                // console.log(myJSON);
                 return myJSON;
             })
             .then(response => {
@@ -207,7 +205,7 @@ class DataService {
 
     // puts
     fetchUpdateMyProfile(data) {
-        return fetch(`${url}/profiles`, {
+        return fetch(`${url}/profles`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -218,8 +216,10 @@ class DataService {
             body: JSON.stringify(data)
         })
             .then(res => {
-                if (res.status < 200 && res.status >= 300) {
-                    console.log("There was some error");
+                if (!res.ok) {
+                    throw new Error("There's been a mistake");
+                } else {
+                    return res;
                 }
             })
     }
@@ -255,6 +255,43 @@ class DataService {
             if (res.status < 200 && res.status >= 300) {
                 console.log("There was some error");
             }
+        })
+    }
+
+    //Login
+
+    fetchLogin(data) {
+        return fetch(`${url}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': key,
+                'SessionId': sessionId,
+                'Accept': "aplication/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            let myJSON = res.json();
+            return myJSON;
+        })
+    }
+
+    //Register
+
+    fetchRegister(data) {
+        return fetch(`${url}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Key': key,
+                'Accept': "aplication/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            let myJSON = res.json();
+            return myJSON;
         })
     }
 }

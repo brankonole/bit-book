@@ -50,7 +50,6 @@ class UpdateProfile extends Component {
 
     dataService.fetchUpdateMyProfile(data)
       .then(res => {
-        // console.log(res);
         this.setState({
           updatedMyProfileData: res
         })
@@ -60,8 +59,6 @@ class UpdateProfile extends Component {
   }
 
   render() {
-    console.log(this.state.isValidate);
-    
     return (
       <div className="UpdateProfile">
         <h4>Update profile</h4>

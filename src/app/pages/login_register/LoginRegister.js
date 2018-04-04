@@ -58,8 +58,6 @@ class LoginRegister extends Component {
 	}
 
 	render() {
-		console.log(this.state.firstNameInputVal);
-		
 		return (
 			<div className="container white z-depth-2">
 
@@ -104,15 +102,15 @@ class LoginRegister extends Component {
 									<div className="row">
 										<div className="input-field col s12">
 											<input id="first_name" type="text" className="validate" onChange={this.addFirstName}/>
-											<label htmlFor="first_name">First Name</label>
+											<label htmlFor="first_name">Full Name</label>
 										</div>
 									</div>
-									<div className="row">
+									{/* <div className="row">
 										<div className="input-field col s12">
 											<input id="last_name" type="text" className="validate" onChange={this.addLastName} />
 											<label htmlFor="last_name">Last Name</label>
 										</div>
-									</div>
+									</div> */}
 									<div className="row">
 										<div className="input-field col s12">
 											<input type="email" className="validate" onChange={this.addEmail}/>

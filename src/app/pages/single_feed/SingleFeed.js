@@ -73,7 +73,6 @@ class SingleFeed extends Component {
     }
 
     render() {
-        console.log(this.state.commentInput);
         return (this.state.singlePost === "") ? <Loading /> : this.chooseTypeOfPost()
     }
 }

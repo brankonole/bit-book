@@ -18,11 +18,12 @@ class App extends Component {
       <React.Fragment>
         <Header/>
         <main>
+          {(true) ?
           <Switch>
             <Route path='/profile' component={Profile}/>
             <Route exact path='/people' component={People}/>
             <Route exact path='/feed' component={Feed}/>
-            {/*dodati type i id, da bi smo mogli da fetchujemo single postove*/}
+            {/*dodati su type i id, da bi smo mogli da fetchujemo single postove*/}
             <Route exact path="/feed/:type/:id" component={SingleFeed}/> 
             <Route exact path="/login" component={LoginRegister}/>
             <Route exact path="/register" component={LoginRegister}/>
@@ -30,7 +31,12 @@ class App extends Component {
             <Route exact path='/' component={Feed}/>
             {/* SingleUserPage leads you to profile of some user other than you*/}
             <Route exact path="/singleUser/:id" component={SingleUserPage} />
-          </Switch>
+          </Switch> :
+          <Switch>
+            <Route path='/login' component={LoginRegister} />
+            <Route path='/register' component={LoginRegister} />
+            <Redirect from='/' to='/login' component={LoginRegister} />
+          </Switch>}
         </main>
         <Footer/>
       </React.Fragment>

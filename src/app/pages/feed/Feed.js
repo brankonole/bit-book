@@ -22,6 +22,7 @@ class Feed extends Component {
     }
 
     getPosts = () => {
+
         dataService.fetchPosts()
             .then(res => {
                 this.setState({
@@ -56,8 +57,6 @@ class Feed extends Component {
     }
 
     render() {
-        console.log(this.state.filteredPosts);
-        
         return (
             <div className="container">
                 <div className='row Feed-container'>

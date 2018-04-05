@@ -21,41 +21,52 @@ class App extends Component {
     }
   }
 
-  handleLogIn = (isLoggedIn, e) => {
-    // e.preventDefault();
+  handleLogIn = (isLoggedIn) => {
     this.setState({
       isLoggedIn
     })
   }
 
+  logOutUser = () => {
+    /* this.setState((prevState, props) => {
+      ////// zasto je ovo ovako, zasto boze!!!!
+      return {isLoggedIn: false}
+    }) */
+    this.setState({isLoggedIn: false})
+
+		sessionStorage.removeItem('userInfo')
+    sessionStorage.removeItem('myId')
+	}
+
   render() {
     console.log(this.state.isLoggedIn)
     return (
       <React.Fragment>
-        <Header/>
+        <Header logOutUser={this.logOutUser} />
         <main>
           {this.state.isLoggedIn ?
-          <Switch>
-            <Redirect from='/login' to='/feed' component={Feed}/>
-            <Route path='/profile' component={Profile}/>
-            <Route exact path='/people' component={People}/>
-            <Route exact path='/feed' component={Feed}/>
-            {/*dodati su type i id, da bi smo mogli da fetchujemo single postove*/}
-            <Route exact path="/feed/:type/:id" component={SingleFeed}/> 
-            <Route exact path="/login" component={LoginRegister}/>
-            <Route exact path="/register" component={LoginRegister}/>
-            {/* <Redirect from="/" to="/home" /> */}
-            <Route exact path='/' component={Feed}/>
-            {/* SingleUserPage leads you to profile of some user other than you*/}
-            <Route exact path="/singleUser/:id" component={SingleUserPage} />
-          </Switch> :
-          <Switch>
-            <Route path='/login' render={() => <LoginRegister loggedIn={this.handleLogIn} />} />
-            <Route path='/register' component={LoginRegister} />
-            <Redirect from='/' to='/login' component={LoginRegister} />
-          </Switch>}
+            <Switch>
+              <Redirect from='/login' to='/feed' component={Feed} />
+              <Route path='/profile' component={Profile} />
+              <Route exact path='/people' component={People} />
+              <Route exact path='/feed' component={Feed} />
+              {/*dodati su type i id, da bi smo mogli da fetchujemo single postove*/}
+              <Route exact path="/feed/:type/:id" component={SingleFeed} />
+              <Route exact path="/login" component={LoginRegister} />
+              <Route exact path="/register" component={LoginRegister} />
+              {/* <Redirect from="/" to="/home" /> */}
+              <Route exact path='/' component={Feed} />
+              {/* SingleUserPage leads you to profile of some user other than you*/}
+              <Route exact path="/singleUser/:id" component={SingleUserPage} />
+              <Route path='/logout' render={() => <LoginRegister />} />
+            </Switch> :
+            <Switch>
+              <Route path='/login' render={() => <LoginRegister loggedIn={this.handleLogIn} />} />
+              <Route path='/register' component={LoginRegister} />
+              <Redirect from='/' to='/login' /*component={LoginRegister}*/ />
+            </Switch>}
         </main>
-        <Footer/>
+        <Footer />
       </React.Fragment>
     );
   }

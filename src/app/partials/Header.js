@@ -19,11 +19,13 @@ class Header extends Component {
                             <li><Link to="/feed" className='Header-link'>Feed</Link></li>
                             <li><Link to="/people" className='Header-link'>People</Link></li>
                             <li><Link to="/profile" className='Header-link'>Profile</Link></li>
+                            <li><Link to="/login" className='Header-link' onClick={this.props.logOutUser}>Logout</Link></li>
                         </ul>
                         <ul className="side-nav Header-side-nav" id="mobile-demo">
                             <li><Link to="/feed" className='Header-link'>Feed</Link></li>
                             <li><Link to="/people" className='Header-link'>People</Link></li>
                             <li><Link to="/profile" className='Header-link'>Profile</Link></li>
+                            <li><Link to="/login" className='Header-link' onClick={this.props.logOutUser}>Logout</Link></li>
                         </ul>
                     </div>
                 </nav>

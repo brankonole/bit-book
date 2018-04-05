@@ -131,6 +131,8 @@ class DataService {
                 return myJSON;
             })
             .then(response => {
+                console.log(response);
+                
                 return new MyProfile(response)
             })
     }

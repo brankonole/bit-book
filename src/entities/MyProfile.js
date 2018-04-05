@@ -6,7 +6,7 @@ class MyProfile {
         this.commentsCount = myProfile.commentsCount;
         this.email = myProfile.email;
         this.name = myProfile.name;
-        this.postsCount = myProfile.myProfile;
+        this.postsCount = myProfile.postsCount;
         this.userId = myProfile.userId; 
     }
 }

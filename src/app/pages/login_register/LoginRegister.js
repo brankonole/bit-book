@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import { dataService } from '../../../services/DataService';
+import { authenticationService } from '../../../services/AuthenticationService';
 
 import "./css/Login.css"
 
@@ -29,7 +29,7 @@ class LoginRegister extends Component {
 			"email": this.state.emailInputVal
 		}
 
-		dataService.fetchRegister(data)
+		authenticationService.fetchRegister(data)
 			.then(res => {
 				// je l' sve proslo kako treba
 			})
@@ -41,7 +41,7 @@ class LoginRegister extends Component {
 			"password": this.state.loginPasswordInputVal
 		}
 
-		dataService.fetchLogin(data)
+		authenticationService.fetchLogin(data)
 			.then(response => {
 				this.props.loggedIn(true);
 			})

@@ -47,10 +47,18 @@ const SingleUser = (props) => {
             return avatarUrl
         }
     }
+
+  const  myUser= () => {
+        if (props.id == JSON.parse(sessionStorage.myId)) {
+            return "/profile"
+        } else {
+            return `/singleUser/${props.id}`
+        }
+    }
     return (
         <React.Fragment>
             <div className="row container center">
-            <Link to={`/singleUser/${props.id}`}>
+            <Link to={myUser()}>
                 <div className="col s12 m12">
                     <div className="card horizontal hoverable">
                         {/* <i className="large material-icons">account_circle</i> */}

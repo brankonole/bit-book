@@ -18,13 +18,15 @@ class Feed extends Component {
     }
 
     componentDidMount() {
+        console.log('mounted')
         this.getPosts();
     }
 
     getPosts = () => {
-
+        console.log('called')
         dataService.fetchPosts()
             .then(res => {
+                console.log("RESULT", res)
                 this.setState({
                     posts: res,
                     filteredPosts: res
@@ -57,6 +59,7 @@ class Feed extends Component {
     }
 
     render() {
+        console.log(this.state.filteredPosts)
         return (
             <div className="container">
                 <div className='row Feed-container'>

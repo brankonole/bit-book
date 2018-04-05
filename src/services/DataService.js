@@ -3,15 +3,13 @@ import ImagePost from '../entities/ImagePost';
 import VideoPost from '../entities/VideoPost';
 import MyProfile from '../entities/MyProfile';
 import User from "../entities/User";
+import { authenticationService } from './AuthenticationService';
 
 const url = 'http://bitbookapi.azurewebsites.net/api';
 const key = 'ABD7540';
-
-const storage = JSON.parse(sessionStorage.getItem("userInfo"))
-let sessionId = storage.sessionId;
+// const sessionId = "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94";
 
 class DataService {
-
     //gets
     fetchPosts() {
         return fetch(`${url}/Posts`, {
@@ -19,7 +17,7 @@ class DataService {
                 // 'Access-Control-Allow-Origin':'http://localhost:3000',
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId
+                'SessionId': authenticationService.getSessionId()
             }
         })
             .then(response => {
@@ -37,7 +35,9 @@ class DataService {
                         return new TextPost(e);
                     }
                 })
+                console.log('fetched')
             })
+            
     }
 
     // creating fetch for single post  //
@@ -58,7 +58,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId
+                'SessionId': authenticationService.getSessionId()
             }
         })
             .then(response => {
@@ -73,7 +73,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId,
+                'SessionId': authenticationService.getSessionId(),
                 'Accept': "aplication/json"
             }
         })
@@ -90,7 +90,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId,
+                'SessionId': authenticationService.getSessionId(),
                 'Accept': "aplication/json"
             }
         }
@@ -108,7 +108,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId
+                'SessionId': authenticationService.getSessionId()
             },
             body: JSON.stringify({
                 "body": data,
@@ -122,7 +122,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId
+                'SessionId': authenticationService.getSessionId()
             }
         })
             .then(response => {
@@ -142,7 +142,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId,
+                'SessionId': authenticationService.getSessionId(),
                 'Accept': "aplication/json"
             },
             body: JSON.stringify(data)
@@ -159,7 +159,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId,
+                'SessionId': authenticationService.getSessionId(),
                 'Accept': "aplication/json"
             },
             body: JSON.stringify(data)
@@ -176,7 +176,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId,
+                'SessionId': authenticationService.getSessionId(),
                 'Accept': "aplication/json"
             },
             body: JSON.stringify(data)
@@ -206,12 +206,12 @@ class DataService {
 
     // puts
     fetchUpdateMyProfile(data) {
-        return fetch(`${url}/profles`, {
+        return fetch(`${url}/profiles`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId,
+                'SessionId': authenticationService.getSessionId(),
                 'Accept': "aplication/json"
             },
             body: JSON.stringify(data)
@@ -233,7 +233,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId,
+                'SessionId': authenticationService.getSessionId(),
                 'Accept': "aplication/json"
             }
         })
@@ -248,7 +248,7 @@ class DataService {
             headers: {
                 'Content-Type': 'application/json',
                 'Key': key,
-                'SessionId': sessionId,
+                'SessionId': authenticationService.getSessionId(),
                 'Accept': "aplication/json"
             }
         })
@@ -259,52 +259,7 @@ class DataService {
         })
     }
 
-    //Login
-
-    fetchLogin(data) {
-        return fetch(`${url}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Key': key,
-                'SessionId': sessionId,
-                'Accept': "aplication/json"
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => {
-            console.log(res);
-            
-            let myJSON = res.json();
-            return myJSON;
-        })
-        .then(response => {
-            this.fetchMyProfile()
-            .then(myInfo => {
-                sessionStorage.setItem('myId', JSON.stringify(myInfo.userId));
-            })
-
-            sessionStorage.setItem('userInfo', JSON.stringify(response));
-        })
-    }
-
-    //Register
-
-    fetchRegister(data) {
-        return fetch(`${url}/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Key': key,
-                'Accept': "aplication/json"
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => {
-            let myJSON = res.json();
-            return myJSON;
-        })
-    }
+    
 }
 
 export const dataService = new DataService;

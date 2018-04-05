@@ -7,7 +7,7 @@ import Header from './partials/Header';
 import Footer from './partials/Footer';
 import Profile from "./pages/profile/Profile"
 import People from './pages/people/People';
-import SingleFeed from "./pages/single_feed/SingleFeed"
+import SingleFeed from "./pages/single_feed/SingleFeed";
 import LoginRegister from "./pages/login_register/LoginRegister"
 import SingleUser from './pages/people/SingleUser';
 import SingleUserPage from "./pages/single_user/SingleUserPage"
@@ -17,14 +17,14 @@ class App extends Component {
     super();
 
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: sessionStorage.getItem("userInfo")
     }
   }
 
-  handleLogIn = (isLoggedIn,e) => {
+  handleLogIn = (isLoggedIn, e) => {
     // e.preventDefault();
     this.setState({
-      isLoggedIn: isLoggedIn
+      isLoggedIn
     })
   }
 
@@ -34,7 +34,7 @@ class App extends Component {
       <React.Fragment>
         <Header/>
         <main>
-          {sessionStorage.getItem("userInfo")?
+          {this.state.isLoggedIn ?
           <Switch>
             <Redirect from='/login' to='/feed' component={Feed}/>
             <Route path='/profile' component={Profile}/>

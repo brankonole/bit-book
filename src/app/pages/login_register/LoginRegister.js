@@ -33,6 +33,7 @@ class LoginRegister extends Component {
 			.then(res => {
 				// je l' sve proslo kako treba
 			})
+			window.location = "#/login";
 	}
 
 	loginUser = () => {
@@ -45,6 +46,7 @@ class LoginRegister extends Component {
 			.then(response => {
 				this.props.loggedIn(true);
 			})
+		
 	}
 
 	// Inputi za Login
@@ -104,7 +106,7 @@ class LoginRegister extends Component {
 									<h3 className="teal-text">Hello</h3>
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="email" className="validate" onChange={this.inputAddEmail}/>
+											<input type="email" className="validate" onChange={this.inputAddEmail} />
 											<label htmlFor="email">Email</label>
 										</div>
 									</div>
@@ -132,7 +134,7 @@ class LoginRegister extends Component {
 									<h3 className="teal-text">Welcome</h3>
 									<div className="row">
 										<div className="input-field col s12">
-											<input id="first_name" type="text" className="validate" onChange={this.addFirstName}/>
+											<input id="first_name" type="text" className="validate" onChange={this.addFirstName} />
 											<label htmlFor="first_name">Full Name</label>
 										</div>
 									</div>
@@ -144,13 +146,13 @@ class LoginRegister extends Component {
 									</div> */}
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="email" className="validate" onChange={this.addEmail}/>
+											<input type="email" className="validate" onChange={this.addEmail} />
 											<label htmlFor="email">Email</label>
 										</div>
 									</div>
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="password" className="validate" onChange={this.addPassword}/>
+											<input type="password" className="validate" onChange={this.addPassword} />
 											<label htmlFor="password">Password</label>
 										</div>
 									</div>

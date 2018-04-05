@@ -48,7 +48,9 @@ class AuthenticationService {
     }
 
     getSessionId() {
-        return JSON.parse(sessionStorage.getItem("userInfo")).sessionId;
+       if (sessionStorage != null)  {
+           return JSON.parse(sessionStorage.getItem("userInfo")).sessionId;
+       } 
     }
 }
 

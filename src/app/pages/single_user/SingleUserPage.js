@@ -33,7 +33,7 @@ class SingleUserPage extends Component {
                     <h3>{this.state.myProfileData.name}</h3>
                     <p>{this.state.myProfileData.about}</p>
                     <div className="Profile-Two-counters center">
-                        <div className="Profile-one left"><div className='Profile-c'>C</div><p>{this.state.myProfileData.postsCount}</p></div>
+                        <div className="Profile-one left"><div className='Profile-c'>P</div><p>{this.state.myProfileData.postsCount}</p></div>
                         <div className="Profile-one"><div className='Profile-c'>C</div><p>{this.state.myProfileData.commentsCount}</p></div>
                     </div>
                 </div>)

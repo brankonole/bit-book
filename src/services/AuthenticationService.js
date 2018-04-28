@@ -15,19 +15,27 @@ class AuthenticationService {
             },
             body: JSON.stringify(data)
         })
-            .then(res => {
-                console.log(res);
+        .then(res => {
+            console.log(res);
 
-                let myJSON = res.json();
-                return myJSON;
-            })
-            .then(response => {
+            let myJSON = res.json();
+            return myJSON;
+        })
+        .then(response => {
+            if (!response.error) {
                 sessionStorage.setItem('userInfo', JSON.stringify(response));
                 dataService.fetchMyProfile()
-                    .then(myInfo => {
-                        sessionStorage.setItem('myId', JSON.stringify(myInfo.userId));
-                    })
-            })
+                .then(myInfo => {
+                    sessionStorage.setItem('myId', JSON.stringify(myInfo.userId));
+                })
+                .catch(error => {
+                    throw new Error('Please insert correct email and password!');
+                    
+                })
+            }
+            
+            return response;
+        })
     }
 
     //Register
@@ -48,9 +56,11 @@ class AuthenticationService {
     }
 
     getSessionId() {
-       if (sessionStorage != null)  {
-           return JSON.parse(sessionStorage.getItem("userInfo")).sessionId;
-       } 
+        if (sessionStorage != null && sessionStorage.getItem("userInfo")) {
+            return JSON.parse(sessionStorage.getItem("userInfo")).sessionId;
+        }
+
+        return '';
     }
 }
 

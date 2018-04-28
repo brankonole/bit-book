@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { authenticationService } from '../../../services/AuthenticationService';
 
 import "./css/Login.css"
+
+const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
 class LoginRegister extends Component {
 	constructor(props) {
@@ -15,38 +17,133 @@ class LoginRegister extends Component {
 			emailInputVal: '',
 			passInputVal: '',
 			loginEmailInputVal: '',
-			loginPasswordInputVal: ''
+			loginPasswordInputVal: '',
+			isEmailEmptyLogin: true,
+			isEmailValidateLogin: true,
+			isPasswordValidateLogin: true,
+			isNameValidate: true,
+			isEmailEmpty: true,
+			isEmailValidate: true,
+			isPassEmpty: true,
+			isPassValidate: true,
+			tabIndex: props.tabIndex || 0,
+			loginFailed: false
 		}
 	}
 
 	//pokupiti vrednosti pakovati u objekat kad pozovemo Login Register prosledimo objekat
 
 	registerUser = () => {
+		this.setState({
+			isNameValidate: true,
+			isEmailEmpty: true,
+			isEmailValidate: true,
+			isPassEmpty: true,			
+			isPassValidate: true
+		})
+
+		let firstNameInputValue = this.state.firstNameInputVal;
+		let emailInputValue = this.state.emailInputVal;
+		let passInputValue = this.state.passInputVal;
+
 		const data = {
-			"username": this.state.emailInputVal,
-			"password": this.state.passInputVal,
-			"name": this.state.firstNameInputVal,
-			"email": this.state.emailInputVal
+			"username": emailInputValue,
+			"password": passInputValue,
+			"name": firstNameInputValue,
+			"email": emailInputValue
 		}
 
-		authenticationService.fetchRegister(data)
-			.then(res => {
-				// je l' sve proslo kako treba
+		if (firstNameInputValue.charCodeAt(0) === 32 || firstNameInputValue.length === 0) {
+			this.setState({
+				isNameValidate: false
 			})
-			window.location = "#/login";
+		} else if (emailInputValue.charCodeAt(0) === 32 || emailInputValue.length === 0) {
+			this.setState({
+				isEmailEmpty: false
+			})
+		} else if (!re.test(emailInputValue.toLowerCase())) {
+			this.setState({
+				isEmailValidate: false
+			})
+		} else if (passInputValue.charCodeAt(0) === 32 || passInputValue.length === 0) {
+			this.setState({
+				isPassEmpty: false
+			})
+		} else if (passInputValue.length > 0 && passInputValue.length < 6) {
+			this.setState({
+				isPassValidate: false
+			})
+		} else {
+			authenticationService.fetchRegister(data)
+				.then(res => {
+					// je l' sve proslo kako treba
+				})
+
+				this.setState({
+					tabIndex: 0
+				})
+
+				this.props.history.push('/login')
+		}
+	}
+
+	registerUserWithEnter = (e) => {
+		if (e.keyCode === 13) {
+			this.registerUser();
+		}
 	}
 
 	loginUser = () => {
+		this.setState({
+			isEmailEmptyLogin: true,
+			isEmailValidateLogin: true,
+			isPasswordValidateLogin: true
+		})
+
+		let loginEmailInputValue = this.state.loginEmailInputVal;
+		let loginPassInputValue = this.state.loginPasswordInputVal;
+
 		const data = {
-			"username": this.state.loginEmailInputVal,
-			"password": this.state.loginPasswordInputVal
+			"username": loginEmailInputValue,
+			"password": loginPassInputValue
 		}
 
-		authenticationService.fetchLogin(data)
-			.then(response => {
-				this.props.loggedIn(true);
+		if (loginEmailInputValue.charCodeAt(0) === 32 || loginEmailInputValue.length === 0) {
+			this.setState({
+				isEmailEmptyLogin: false
 			})
-		
+		} else if (!re.test(loginEmailInputValue.toLowerCase())) {
+			this.setState({
+				isEmailValidateLogin: false
+			})
+		} else if (loginPassInputValue.charCodeAt(0) === 32 || loginPassInputValue.length === 0) {
+			this.setState({
+				isPasswordValidateLogin: false
+			})
+		} else {
+			console.log(data);
+			
+			authenticationService.fetchLogin(data)
+				.then(response => {
+					if (response.error) {
+						this.props.loggedIn(false);
+						this.setState({
+							loginFailed: true
+						})
+					} else {
+						this.props.loggedIn(true);
+						this.setState({
+							loginFailed: false
+						})
+					}
+				})
+		}
+	}
+
+	loginUserWithEnter = (e) => {
+		if (e.keyCode === 13) {
+			this.loginUser();
+		}
 	}
 
 	// Inputi za Login
@@ -92,9 +189,8 @@ class LoginRegister extends Component {
 
 	render() {
 		return (
-			<div className="container white z-depth-2">
-
-				<Tabs className='tab-demo z-depth-1'>
+			<div className="container white z-depth-2 LoginRegister-content">
+				<Tabs className='tab-demo z-depth-1' selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
 					<TabList className='tabs tab-demo z-depth-1'>
 						<Tab className='tab'><Link to='/login' className='LoginRegister-link'>Login</Link></Tab>
 						<Tab className='tab'><Link to='/register' className='LoginRegister-link'>Register</Link></Tab>
@@ -106,22 +202,26 @@ class LoginRegister extends Component {
 									<h3 className="teal-text">Hello</h3>
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="email" className="validate" onChange={this.inputAddEmail} />
+											<input type="email" className="validate LoginRegister-input" value={this.state.loginEmailInputVal} onChange={this.inputAddEmail} onKeyUp={this.loginUserWithEnter} required/>
+											{this.state.isEmailValidateLogin ? "" : <p className="LoginRegister-errorMsg">Invalid input!</p>}
+											{this.state.isEmailEmptyLogin ? "" : <p className="LoginRegister-errorMsg">Please fill out this field!</p>}
 											<label htmlFor="email">Email</label>
 										</div>
 									</div>
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="password" className="validate" onChange={this.inputAddPassword} />
+											<input type="password" className="validate LoginRegister-input" value={this.state.loginPasswordInputVal} onChange={this.inputAddPassword} onKeyUp={this.loginUserWithEnter}/>
+											{this.state.isPasswordValidateLogin ? "" : <p className="LoginRegister-errorMsg">Please fill out this field!</p>}
 											<label htmlFor="password">Password</label>
 										</div>
 									</div>
+									{this.state.loginFailed ? <p className="LoginRegister-errorMsg">Login failed</p> : ''}
 									<br />
 									<center>
 										<button className="btn waves-effect waves-light teal" type="button" name="action" onClick={this.loginUser}>Connect</button>
 										<br />
 										<br />
-										<a href="">Forgotten password?</a>
+										{/* <a href="">Forgotten password?</a> */}
 									</center>
 								</div>
 							</div>
@@ -134,7 +234,8 @@ class LoginRegister extends Component {
 									<h3 className="teal-text">Welcome</h3>
 									<div className="row">
 										<div className="input-field col s12">
-											<input id="first_name" type="text" className="validate" onChange={this.addFirstName} />
+											<input id="first_name" type="text" value={this.state.firstNameInputVal} required className="validate LoginRegister-input" onChange={this.addFirstName} onKeyUp={this.registerUserWithEnter}/>
+											{(this.state.isNameValidate || this.state.firstNameInputVal !== '') ? "" : <p className="LoginRegister-errorMsg">Please fill out this field!</p>}
 											<label htmlFor="first_name">Full Name</label>
 										</div>
 									</div>
@@ -146,13 +247,17 @@ class LoginRegister extends Component {
 									</div> */}
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="email" className="validate" onChange={this.addEmail} />
+											<input type="email" value={this.state.emailInputVal} required className="validate LoginRegister-input" onChange={this.addEmail} onKeyUp={this.registerUserWithEnter}/>
+											{this.state.isEmailValidate ? "" : <p className="LoginRegister-errorMsg">Invalid input!</p>}
+											{(this.state.isEmailEmpty || this.state.emailInputVal !== '') ? "" : <p className="LoginRegister-errorMsg">Please fill out this field!</p>}
 											<label htmlFor="email">Email</label>
 										</div>
 									</div>
 									<div className="row">
 										<div className="input-field col s12">
-											<input type="password" className="validate" onChange={this.addPassword} />
+											<input type="password" value={this.state.passInputVal} required className="validate LoginRegister-input" onChange={this.addPassword} onKeyUp={this.registerUserWithEnter}/>
+											{this.state.isPassValidate ? "" : <p className="LoginRegister-errorMsg">Password has to be at least 5 characters long</p>}
+											{this.state.isPassEmpty ? "" : <p className="LoginRegister-errorMsg">Please fill out this field!</p>}
 											<label htmlFor="password">Password</label>
 										</div>
 									</div>
@@ -169,4 +274,4 @@ class LoginRegister extends Component {
 	}
 }
 
-export default LoginRegister;
+export default withRouter(LoginRegister);

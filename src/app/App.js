@@ -17,7 +17,7 @@ class App extends Component {
     super();
 
     this.state = {
-      isLoggedIn: sessionStorage.getItem("userInfo")
+      isLoggedIn: sessionStorage.getItem("userInfo") ? true : false
     }
   }
 
@@ -28,10 +28,6 @@ class App extends Component {
   }
 
   logOutUser = () => {
-    /* this.setState((prevState, props) => {
-      ////// zasto je ovo ovako, zasto boze!!!!
-      return {isLoggedIn: false}
-    }) */
     this.setState({isLoggedIn: false})
 
 		sessionStorage.removeItem('userInfo')
@@ -39,7 +35,6 @@ class App extends Component {
 	}
 
   render() {
-    console.log(this.state.isLoggedIn)
     return (
       <React.Fragment>
         <Header logOutUser={this.logOutUser} />
@@ -61,8 +56,8 @@ class App extends Component {
               <Route path='/logout' render={() => <LoginRegister />} />
             </Switch> :
             <Switch>
-              <Route path='/login' render={() => <LoginRegister loggedIn={this.handleLogIn} />} />
-              <Route path='/register' component={LoginRegister} />
+              <Route path='/login' render={() => <LoginRegister loggedIn={this.handleLogIn} tabIndex={0} />} />
+              <Route path='/register' render={() => <LoginRegister tabIndex={1} />} />
               <Redirect from='/' to='/login' /*component={LoginRegister}*/ />
             </Switch>}
         </main>

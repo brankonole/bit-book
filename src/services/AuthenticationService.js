@@ -1,6 +1,6 @@
 import { dataService } from "../services/DataService";
 
-const url = 'http://bitbookapi.azurewebsites.net/api';
+const url = 'https://bitbookapi.azurewebsites.net/api';
 const key = 'ABD7540';
 
 class AuthenticationService {

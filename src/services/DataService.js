@@ -5,7 +5,7 @@ import MyProfile from '../entities/MyProfile';
 import User from "../entities/User";
 import { authenticationService } from './AuthenticationService';
 
-const url = 'http://bitbookapi.azurewebsites.net/api';
+const url = 'https://bitbookapi.azurewebsites.net/api';
 const key = 'ABD7540';
 // const sessionId = "7A5D8FF8-B04D-4C8C-9812-8B44EB7E4C94";
 
@@ -14,7 +14,7 @@ class DataService {
     fetchPosts() {
         return fetch(`${url}/Posts`, {
             headers: {
-                // 'Access-Control-Allow-Origin':'http://localhost:3000',
+                // 'Access-Control-Allow-Origin':'https://localhost:3000',
                 'Content-Type': 'application/json',
                 'Key': key,
                 'SessionId': authenticationService.getSessionId()

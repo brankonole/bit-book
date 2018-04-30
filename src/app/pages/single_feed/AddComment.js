@@ -45,11 +45,11 @@ class AddComment extends Component {
             <div className="container">
                 <div className="AddComment-row row">
                     <label className="col s8 m8 l8 ">
-                        <input type="text" value={this.state.commentInput} onChange={this.commentInput} maxLength={numberOfCharacters} placeholder="Add your comment" required />
+                        <input className="AddComment-input" type="text" value={this.state.commentInput} onChange={this.commentInput} maxLength={numberOfCharacters} placeholder="Add your comment" required />
                     </label>
-                    <button className="btn blue col s4 m4 l4 " onClick={this.sendComments} type="submit">Send</button>
+                    <button className="btn blue col s4 m4 l4" onClick={this.sendComments} type="submit">Send</button>
                 </div>
-                <p className="red">{this.state.warning}</p>
+                <p className="red-text AddComment-error">{this.state.warning}</p>
             </div>
         )
     }

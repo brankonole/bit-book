@@ -1,6 +1,32 @@
 .Feed-container { margin-top: 20px; }
-.Feed-aside { margin-top: 0.5rem; }
+.Feed-aside { margin-top: 0.5rem; text-align: right; }
+.Feed-aside button { padding: 0 0.2rem; font-size: 9px; }
+.Feed-aside span { position: relative; }
+.Feed-aside .dropdown-content {
+    top: 26px !important;
+    min-width: unset;
+    border: 1px solid #26a69a;
+}
+.Feed-aside .dropdown-content li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 25px;
+}
+.Feed-aside .dropdown-content li:hover {
+    border-bottom: 1px solid #26a69a;
+    border-top: 1px solid #26a69a;
+}
 .FeedItem-inline {
     display: flex;
     justify-content: flex-end;
+}
+
+@media(min-width: 480px) {
+    .Feed-aside button { padding: 0 0.5rem; font-size: 10px; }
+}
+
+@media(min-width: 756px) {
+    .Feed-aside button { padding: 0 1rem; font-size: 14px; }
+    .Feed-aside .dropdown-content li { min-height: 50px; }
 }

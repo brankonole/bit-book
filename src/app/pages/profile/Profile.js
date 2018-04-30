@@ -64,7 +64,7 @@ class Profile extends Component {
         return <div className="col s2 container Profile">
             <img id="Profile-img" src={this.state.myProfileData.avatarUrl} alt="" className="circle responsive-img" />
             <h3>{this.state.myProfileData.name}</h3>
-            <Link to={`/profile`} onClick={this.openModal}>Edit profile</Link>
+            <Link to={`/profile`} onClick={this.openModal} className="Profile-btn btn">Edit profile</Link>
             {/* <EditProfile /> */}
             <p>{this.state.myProfileData.about}</p>
 
@@ -73,8 +73,8 @@ class Profile extends Component {
             </Modal>
 
             <div className="Profile-Two-counters center">
-                <div className="Profile-one left"><div className='Profile-c'>P</div><p>{this.state.myProfileData.postsCount}</p></div>
-                <div className="Profile-one"><div className='Profile-c'>C</div><p>{this.state.myProfileData.commentsCount}</p></div>
+                <div className="Profile-item"><div className='Profile-item-content'>Posts</div><p>{this.state.myProfileData.postsCount}</p></div>
+                <div className="Profile-item"><div className='Profile-item-content'>Commetnts</div><p>{this.state.myProfileData.commentsCount}</p></div>
             </div>
         </div>
     }

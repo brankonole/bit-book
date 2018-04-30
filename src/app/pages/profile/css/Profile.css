@@ -1,48 +1,52 @@
 .Profile {
+    margin-top: 70px;
     text-align: center; 
-    margin-top: 100px;
-
 }
-
 #Profile-img {
     height: 250px;
     width: 250px;
     border-radius: 100%;
 }
-
-.container {
-    text-align: center;
-} 
-
 .Profile-Two-counters {
-    margin-top: 30px;
-   display: -webkit-inline-flex;
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
 }
-
-.Profile-c {
-    height: 100%;
-    width: 35px;
-    background-color: blue;
-    border-radius: 50%;
+.Profile-item {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    /* float: left; */
+    border: 2px solid #26a69a;
+    background-color: rgb(235, 228, 228);
+    border-radius: 20px;
+}
+.Profile-item:first-child { margin-right: 50px; }
+.Profile-item-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
-}
-
-.Profile-one {
-    display: flex;
-    align-items: center;
-    float: left;
-    margin-right: 65px;
-    background-color: rgb(235, 228, 228);
-    border: solid rgb(235, 228, 228) 1px;
+    height: 100%;
+    padding: 0 10px;
+    border-right: 2px solid #26a69a;
     border-radius: 20px;
-    height: 35px;
+    color: #26a69a;
+    background-color: #fff;
 }
-.Profile-one p { margin: 0 10px; }
-
-a{
-    text-decoration: underline;
+.Profile-item p { margin: 0 10px; }
+.Profile-btn {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid #26a69a;
+    line-height: unset;
+    color: #26a69a;
+    background-color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: none;
 }
-
+.Profile-btn:hover {
+    background-color: #26a69a;
+    color: white;
+}
+.Profile-btn:focus { background-color: #fff; color: #26a69a; }

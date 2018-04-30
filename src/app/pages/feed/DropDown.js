@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Dropdown } from 'react-materialize';
+import { Button, Dropdown } from 'react-materialize';
 
 const DropDown = (props) => {
     return (

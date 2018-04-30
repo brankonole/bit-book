@@ -4,3 +4,5 @@
     margin-left: auto !important;
     margin-right: auto !important;
 }
+.AddComment-error { margin: 0 6% }
+.AddComment-input { margin-bottom: 10px !important; }

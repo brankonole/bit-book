@@ -29,8 +29,7 @@ class AuthenticationService {
                     sessionStorage.setItem('myId', JSON.stringify(myInfo.userId));
                 })
                 .catch(error => {
-                    throw new Error('Please insert correct email and password!');
-                    
+                    throw new Error('Please insert correct email and password!');      
                 })
             }
             

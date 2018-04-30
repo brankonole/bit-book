@@ -66,7 +66,7 @@ class UpdateProfile extends Component {
           <form className="col s12">
             <div className="row">
               <img className="col s3 UpdateProfile-img" src="http://www.clker.com/cliparts/A/Y/O/m/o/N/placeholder-md.png" />
-              <div className="input-field col s6">
+              <div className="input-field col s9">
                 <label htmlFor="input_text"></label>
                 <input id="input_text" type="text" data-length="10" required placeholder="Full Name" onChange={this.updateFullNameInputValue} />
                 {this.state.isValidate ? '' : <p>Please provide your full name</p>}
